@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 서면점 - Why</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5128B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F8FC;
+  --bg-warm:        #F5F3F9;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+body.accent-neutral {
+  --bg-tint:      #F7F7F8;
+  --bg-warm:      #F3F3F4;
+  --bg-dark:      #2D2D2D;
+  --border-soft:  #E8E8E8;
+  --border-faint: #DEDEDE;
+  --text-sub:     #666666;
+  --text-muted:   #999999;
+  --text-light:   #AAAAAA;
+}
+
+/* Section tag */
+.section-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.tag-num { font-size: 11px; font-weight: 700; color: var(--brand-primary); letter-spacing: 2px; }
+.tag-line { width: 24px; height: 1px; background: var(--brand-primary); opacity: 0.3; }
+.section-title {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.5px;
+}
+
+/* Why-B */
+.why { position: relative; overflow: hidden; }
+.why.why-b {
+  padding: 52px 50px 48px;
+  background: var(--bg-tint);
+}
+.why.why-b .wb-cards { margin: 26px 0 24px; }
+.why.why-b .wb-card {
+  background: var(--bg-white); border-radius: 10px;
+  padding: 22px 24px; margin-bottom: 10px;
+  display: flex; align-items: flex-start; gap: 18px;
+  box-shadow: 0 1px 4px rgba(116,53,255,0.05);
+  border: 1px solid var(--border-soft);
+}
+.why.why-b .wb-icon {
+  width: 38px; min-width: 38px; height: 38px;
+  background: var(--brand-primary); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; margin-top: 1px;
+}
+.why.why-b .wb-content { flex: 1; }
+.why.why-b .wb-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--brand-primary); margin-bottom: 6px;
+}
+.why.why-b .wb-desc {
+  font-size: 13.5px; color: var(--text-sub); line-height: 1.85;
+}
+.why.why-b .wb-insight {
+  background: var(--brand-primary); border-radius: 8px;
+  padding: 22px 26px; text-align: center;
+}
+.why.why-b .wb-insight-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 17px; font-weight: 500; color: #fff; line-height: 1.9;
+}
+.why.why-b .wb-insight-text em { font-style: normal; color: #C4A0FF; font-weight: 700; }
+.tag-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+</style>
+</head>
+<body class="accent-neutral">
+
+<div class="why why-b">
+  <!-- 섹션 헤더 -->
+  <div class="section-tag">
+    <span class="tag-num">04</span>
+    <span class="tag-line"></span>
+  </div>
+  <h2 class="section-title">산후 체중이 빠지지 않는 진짜 이유</h2>
+  <p class="tag-sub">호르몬 변화가 만드는 3가지 악순환</p>
+
+  <!-- 아이콘 카드 세로 나열 -->
+  <div class="wb-cards">
+    <div class="wb-card">
+      <div class="wb-icon" style="color: #fff;">&#x1F4C9;</div>
+      <div class="wb-content">
+        <div class="wb-title">에스트로겐 급감</div>
+        <div class="wb-desc">
+          출산 후 에스트로겐 수치가 급격히 떨어지면서<br>
+          지방 분해 능력이 저하됩니다.<br>
+          특히 복부와 골반 주위에 지방이 쉽게 축적되고,<br>
+          같은 식사량에도 체지방이 늘어나는 원인이 됩니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="wb-card">
+      <div class="wb-icon" style="color: #fff;">&#x26A1;</div>
+      <div class="wb-content">
+        <div class="wb-title">기초대사량 저하</div>
+        <div class="wb-desc">
+          임신 중 줄어든 근육량과 활동량 감소로<br>
+          기초대사량이 평균 15~20% 떨어집니다.<br>
+          쉽게 말해, 이전과 똑같이 먹어도<br>
+          몸이 소비하는 에너지가 줄어든 상태입니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="wb-card">
+      <div class="wb-icon" style="color: #fff;">&#x1F4A4;</div>
+      <div class="wb-content">
+        <div class="wb-title">코르티솔 과다 분비</div>
+        <div class="wb-desc">
+          수면 부족과 육아 스트레스로<br>
+          코르티솔(스트레스 호르몬)이 과다 분비됩니다.<br>
+          이 호르몬은 식욕을 증가시키고<br>
+          내장 지방 축적을 촉진하는 악순환을 만듭니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인사이트 강조 -->
+  <div class="wb-insight">
+    <p class="wb-insight-text">
+      출산 후 체중 문제는 의지의 문제가 아닙니다<br>
+      <em>호르몬 균형을 회복하는 것이 먼저</em>입니다
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

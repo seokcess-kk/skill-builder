@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 서면점 - Pain</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5128B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F8FC;
+  --bg-warm:        #F5F3F9;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+  --border-faint:   #E4E0EC;
+}
+
+body.accent-neutral {
+  --bg-tint:      #F7F7F8;
+  --bg-warm:      #F3F3F4;
+  --bg-dark:      #2D2D2D;
+  --border-soft:  #E8E8E8;
+  --border-faint: #DEDEDE;
+  --text-sub:     #666666;
+  --text-muted:   #999999;
+  --text-light:   #AAAAAA;
+}
+
+/* Section tag */
+.section-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.tag-num { font-size: 11px; font-weight: 700; color: var(--brand-primary); letter-spacing: 2px; }
+.tag-line { width: 24px; height: 1px; background: var(--brand-primary); opacity: 0.3; }
+.section-title {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.5px;
+}
+
+/* Pain-C */
+.pain { background: var(--bg-white); }
+.pain.pain-c { padding: 52px 50px 48px; }
+.pain.pain-c .pc-narrative {
+  font-size: 15px; color: var(--text-body); line-height: 2.2;
+  margin: 26px 0 24px;
+}
+.pain.pain-c .pc-quote-box {
+  background: var(--bg-tint);
+  border-left: 4px solid var(--brand-primary);
+  border-radius: 0 8px 8px 0;
+  padding: 22px 28px; margin-bottom: 28px;
+}
+.pain.pain-c .pc-quote-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 17px; font-style: italic;
+  color: var(--brand-primary); line-height: 2;
+}
+.pain.pain-c .pc-transition {
+  font-size: 15px; color: var(--text-body); line-height: 2.1;
+  padding-top: 8px; border-top: 1px solid var(--border-soft);
+}
+.pain.pain-c .pc-transition em { font-style: normal; color: var(--brand-primary); font-weight: 600; }
+</style>
+</head>
+<body class="accent-neutral">
+
+<div class="pain pain-c">
+  <!-- 섹션 헤더 -->
+  <div class="section-tag">
+    <span class="tag-num">03</span>
+    <span class="tag-line"></span>
+  </div>
+  <h2 class="section-title">출산 후, 이전과 다른 내 몸</h2>
+
+  <!-- 스토리 내러티브 -->
+  <div class="pc-narrative">
+    <p>얼마 전 서면점에 두 아이의 엄마인<br>
+    30대 후반 분이 찾아오셨습니다.</p>
+    <p style="margin-top: 16px;">"원장님, 둘째 낳고 1년이 지났는데<br>
+    체중이 하나도 안 빠져요.<br>
+    첫째 때는 모유 수유만으로도 자연스럽게 돌아왔는데,<br>
+    이번에는 아무리 해도 안 돼요."</p>
+    <p style="margin-top: 16px;">식사량을 줄여보기도 하고,<br>
+    유튜브에서 본 홈트레이닝도 따라 해봤지만<br>
+    오히려 피로만 쌓이고 몸무게는 그대로였습니다.<br>
+    가장 힘들었던 건 거울 속 낯선 체형이었다고 하셨어요.</p>
+  </div>
+
+  <!-- 이탤릭 인용 강조 -->
+  <div class="pc-quote-box">
+    <p class="pc-quote-text">"임신 전 입던 옷이 하나도 안 맞아요.<br>
+    체중 문제가 아니라 몸의 형태 자체가 달라진 느낌이에요.<br>
+    이게 정말 원래대로 돌아올 수 있는 건지 불안합니다."</p>
+  </div>
+
+  <!-- 전환 문단 -->
+  <div class="pc-transition">
+    <p>이분만의 이야기가 아닙니다.<br>
+    서면산후다이어트를 검색하시는 많은 분들이<br>
+    비슷한 고민을 안고 계십니다.<br><br>
+    그런데 왜 출산 후에는 같은 방법이 통하지 않을까요?<br>
+    <em>그 답은 호르몬에 있습니다.</em></p>
+  </div>
+</div>
+
+</body>
+</html>

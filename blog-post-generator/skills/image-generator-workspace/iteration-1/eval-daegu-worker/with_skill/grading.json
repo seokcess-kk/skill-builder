@@ -1,0 +1,13 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-daegu-worker",
+  "run_type": "with_skill",
+  "expectations": [
+    {"text": "레시피가 선택되었는가", "passed": true, "evidence": "Recipe #1 클래식 에디토리얼 선택됨"},
+    {"text": "액센트 모드가 적용되었는가", "passed": true, "evidence": "Primary 주도 (기본) 적용"},
+    {"text": "밝기 리듬 준수 (다크 3연속 없음)", "passed": true, "evidence": "최대 2연속 다크 (Bridge-03b + Why). 패턴: 라→라→라→다→다→라→라→라→다→라"},
+    {"text": "의료 컴플라이언스 적용", "passed": true, "evidence": "medical-ad-compliance.md 로드, 금지 표현 미사용, Disclaimer 3항목 포함, 부작용 명시"},
+    {"text": "섹션 완전성 (HTML 8개 이상)", "passed": true, "evidence": "10개 HTML 파일 생성 (Bridge 포함)"},
+    {"text": "Hook-CTA 톤 호응", "passed": true, "evidence": "Hook-A(라이트 코너장식) ↔ CTA-A(다크 코너장식) — 코너장식 패턴 호응"}
+  ]
+}

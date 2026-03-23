@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 대구점 — Solution</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #512DAB;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --bg-tint:        #F9F7FF;
+  --bg-white:       #FFFFFF;
+  --border-soft:    #EDEBF2;
+}
+
+.section-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.tag-num  { font-size: 11px; font-weight: 700; color: var(--brand-accent); letter-spacing: 2px; }
+.tag-line { width: 24px; height: 1px; background: var(--brand-accent); }
+.section-title {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.5px;
+}
+
+.solution.solution-a {
+  padding: 52px 50px 48px;
+  background: var(--bg-tint);
+}
+.tag-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+
+.timeline { position: relative; padding-left: 36px; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 13px; top: 8px; bottom: 8px; width: 1px;
+  background: linear-gradient(180deg, var(--brand-primary) 0%, #E0DCE8 100%);
+}
+.step {
+  position: relative; margin-bottom: 24px;
+  padding: 20px 24px;
+  background: var(--bg-white); border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(116,53,255,0.06);
+}
+.step:last-child { margin-bottom: 0; }
+.step-dot {
+  position: absolute; left: -36px; top: 24px;
+  width: 27px; height: 27px;
+  background: var(--brand-primary); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff;
+  z-index: 1; box-shadow: 0 0 0 4px var(--bg-tint);
+}
+.step-title { font-size: 15.5px; font-weight: 700; color: var(--brand-primary); margin-bottom: 5px; }
+.step-desc { font-size: 14px; color: var(--text-sub); line-height: 1.9; }
+
+.compare { border-radius: 8px; overflow: hidden; border: 1px solid var(--border-soft); margin-top: 36px; }
+.compare table { width: 100%; border-collapse: collapse; }
+.compare th { padding: 13px 20px; font-size: 13px; font-weight: 600; text-align: center; }
+.compare th:first-child { background: var(--border-soft); color: var(--text-muted); width: 50%; }
+.compare th:last-child  { background: var(--brand-primary); color: #fff; }
+.compare td { padding: 12px 20px; font-size: 13px; text-align: center; border-bottom: 1px solid #F4F2F8; }
+.compare td:first-child { color: var(--text-muted); }
+.compare td:last-child  { color: var(--brand-primary); font-weight: 500; background: rgba(116,53,255,0.02); }
+.compare tr:last-child td { border-bottom: none; }
+
+.closing { margin-top: 32px; text-align: center; padding: 22px 20px; }
+.closing-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 16.5px; color: var(--brand-primary); line-height: 2;
+}
+.closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="solution solution-a">
+  <div class="section-tag">
+    <span class="tag-num">05</span>
+    <span class="tag-line"></span>
+  </div>
+  <h2 class="section-title">대구다이어트한의원의 접근 방식</h2>
+  <p class="tag-sub">직장인 맞춤 한방 체질 개선 프로그램</p>
+
+  <!-- 타임라인 -->
+  <div class="timeline">
+    <div class="step">
+      <div class="step-dot">1</div>
+      <h3 class="step-title">1:1 체질 정밀 진단</h3>
+      <p class="step-desc">사상체질 분석과 현대 진단을 결합하여<br>개인별 비만 원인을 정확하게 파악합니다.<br>체질, 생활패턴, 스트레스 수준까지 종합 분석합니다.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot">2</div>
+      <h3 class="step-title">맞춤 한약 처방</h3>
+      <p class="step-desc">체질 진단 결과에 따라 개인별 한약을 조제합니다.<br>기초대사량 회복, 습담 제거, 식욕 조절 등<br>근본 원인에 맞는 처방을 진행합니다.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot">3</div>
+      <h3 class="step-title">직장인 맞춤 생활 교정</h3>
+      <p class="step-desc">바쁜 일정에 맞춘 간편한 식이요법과<br>사무실에서 가능한 활동 가이드를 제공합니다.<br>실천 가능한 범위에서 관리합니다.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot">4</div>
+      <h3 class="step-title">요요 방지 유지 관리</h3>
+      <p class="step-desc">감량 후에도 건강한 체중을 유지할 수 있도록<br>체질 안정화 단계까지 관리합니다.<br>정기 체크로 요요를 예방합니다.</p>
+    </div>
+  </div>
+
+  <!-- 비교표 -->
+  <div class="compare">
+    <table>
+      <thead>
+        <tr>
+          <th>일반 다이어트</th>
+          <th>다이트한의원</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>획일적 식단 제한</td>
+          <td>체질별 맞춤 처방</td>
+        </tr>
+        <tr>
+          <td>체중 감량에만 집중</td>
+          <td>체질 개선 + 감량 병행</td>
+        </tr>
+        <tr>
+          <td>요요 반복 가능성</td>
+          <td>유지 관리 단계 포함</td>
+        </tr>
+        <tr>
+          <td>자기 관리에 의존</td>
+          <td>전문의 1:1 관리</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 클로징 -->
+  <div class="closing">
+    <p class="closing-text">
+      "단순히 살을 빼는 것이 아니라,<br>
+      <em>건강한 체중을 유지할 수 있는 몸</em>을<br>
+      만드는 것이 목표입니다."
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

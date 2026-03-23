@@ -1,0 +1,82 @@
+{
+  "project": "다이트한의원 서면점 블로그 이미지",
+  "keyword": "서면산후다이어트",
+  "topic": "출산 후 체형 관리 — 호르몬 변화에 맞춘 한약 처방",
+  "doctor": "박지영 원장 (여성 비만 전문)",
+  "homepage": "https://daeatdiet.com",
+  "design_choices": {
+    "brand_colors": {
+      "primary": "#7435FF",
+      "primary_dark": "#2E1566",
+      "primary_light": "#9B6BFF",
+      "accent_bg": "#F8F6FF",
+      "accent_border": "#E8E0FF",
+      "source": "다이트한의원 홈페이지에서 추출한 브랜드 컬러"
+    },
+    "typography": {
+      "headline_font": "Noto Serif KR",
+      "body_font": "Noto Sans KR",
+      "headline_weight": "700",
+      "body_weight": "300-500"
+    },
+    "layout": {
+      "width": "680px",
+      "style": "clean_minimal_clinical",
+      "description": "네이버 블로그 최적화 680px 폭, 모바일 대응, 한의원 브랜드의 신뢰감 있는 클린 디자인"
+    },
+    "color_usage": {
+      "hook_section": "보라 그라데이션 배경 (강렬한 첫인상)",
+      "intro_section": "밝은 회색 배경 + 상단 보라 악센트 라인",
+      "pain_section": "흰 배경 + 보라 좌측 보더 카드",
+      "why_section": "연보라 배경 + 흰색 카드",
+      "solution_section": "흰 배경 + 3단계 카드 레이아웃",
+      "proof_section": "밝은 회색 배경 + 후기 카드",
+      "cta_section": "보라 그라데이션 배경 (행동 유도)",
+      "disclaimer_section": "회색 배경 (절제된 톤)"
+    }
+  },
+  "sections": [
+    {
+      "file": "01_hook.html",
+      "section": "Hook",
+      "purpose": "출산 후 다이어트 어려움에 대한 공감 + 호르몬 원인 암시"
+    },
+    {
+      "file": "02_intro.html",
+      "section": "Intro",
+      "purpose": "박지영 원장 소개 및 전문 분야 (여성 비만, 산후 체형, 호르몬 처방)"
+    },
+    {
+      "file": "03_pain.html",
+      "section": "Pain",
+      "purpose": "산후 여성의 4가지 핵심 고민 공감 (체중 정체, 하체 비만, 수유 중 약 걱정, 피로/부종)"
+    },
+    {
+      "file": "04_why.html",
+      "section": "Why",
+      "purpose": "산후 체중 정체의 3가지 의학적 원인 (에스트로겐 급감, 기초대사량 저하, 수분 대사 장애)"
+    },
+    {
+      "file": "05_solution.html",
+      "section": "Solution",
+      "purpose": "3단계 한약 처방 프로그램 (체질 진단 → 맞춤 한약 → 관리 유지)"
+    },
+    {
+      "file": "06_proof.html",
+      "section": "Proof",
+      "purpose": "익명 후기 2건 (수치 포함, 개인차 면책 포함)"
+    },
+    {
+      "file": "07_cta.html",
+      "section": "CTA",
+      "purpose": "무료 상담 예약 유도 + 전화/카톡 상담 안내"
+    },
+    {
+      "file": "08_disclaimer.html",
+      "section": "Disclaimer",
+      "purpose": "의료광고 심의 기준 준수 면책조항"
+    }
+  ],
+  "generated_at": "2026-03-19",
+  "method": "without_skill (Claude direct generation)"
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 일산 - Solution</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5125B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F7FF;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+/* Solution-B: 어프로치 카드 + 체크리스트 */
+.section-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.tag-num  { font-size: 11px; font-weight: 700; color: var(--brand-accent); letter-spacing: 2px; }
+.tag-line { width: 24px; height: 1px; background: var(--brand-accent); }
+.section-title {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.5px;
+}
+
+.solution.solution-b {
+  padding: 52px 50px 48px;
+  background: var(--bg-white);
+}
+.solution.solution-b .sb-approaches { margin: 26px 0 28px; }
+.approach-card {
+  background: var(--bg-white); border-radius: 10px;
+  padding: 24px 26px; box-shadow: 0 1px 4px rgba(116,53,255,0.06);
+  margin-bottom: 12px; display: flex; gap: 18px; align-items: flex-start;
+  border: 1px solid var(--border-soft);
+}
+.approach-icon {
+  width: 36px; min-width: 36px; height: 36px;
+  background: var(--brand-primary); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 15px; margin-top: 2px;
+}
+.approach-content { flex: 1; }
+.approach-title { font-size: 15.5px; font-weight: 700; color: var(--brand-primary); margin-bottom: 6px; }
+.approach-desc  { font-size: 14px; color: var(--text-sub); line-height: 1.9; }
+
+.sb-checklist { margin-bottom: 28px; }
+.sb-checklist-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: 1px;
+  margin-bottom: 12px; text-transform: uppercase;
+}
+.check-item {
+  display: flex; gap: 16px; align-items: center;
+  padding: 16px 22px; margin-bottom: 8px;
+  background: var(--bg-tint); border-radius: 8px;
+}
+.check-icon {
+  width: 26px; min-width: 26px; height: 26px;
+  background: rgba(116,53,255,0.1); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--brand-primary); font-weight: 700;
+}
+.check-text { font-size: 15px; color: var(--text-body); line-height: 1.8; flex: 1; }
+.check-text strong { color: var(--brand-primary); }
+
+.closing {
+  text-align: center; padding: 22px 20px;
+  background: var(--bg-tint); border-radius: 8px;
+}
+.closing-text {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 16.5px; color: var(--brand-primary); line-height: 2;
+}
+.closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
+</style>
+</head>
+<body class="accent-gradient">
+
+<div class="solution solution-b">
+  <div class="section-tag">
+    <span class="tag-num">05</span>
+    <span class="tag-line"></span>
+  </div>
+  <h2 class="section-title">다이트한의원 일산점의<br>갱년기 체중 관리 접근법</h2>
+
+  <!-- 어프로치 카드 -->
+  <div class="sb-approaches">
+    <div class="approach-card">
+      <div class="approach-icon">01</div>
+      <div class="approach-content">
+        <p class="approach-title">체질 진단 시스템</p>
+        <p class="approach-desc">사상체질 분석과 현대 체성분 검사를 결합하여<br>개인별 체질 유형과 대사 상태를 정밀하게 파악합니다.</p>
+      </div>
+    </div>
+    <div class="approach-card">
+      <div class="approach-icon">02</div>
+      <div class="approach-content">
+        <p class="approach-title">1:1 맞춤 한약 처방</p>
+        <p class="approach-desc">갱년기 호르몬 변화와 체질 불균형을 고려한<br>맞춤 한약을 처방합니다. 기초대사량 회복에<br>도움을 드릴 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="approach-card">
+      <div class="approach-icon">03</div>
+      <div class="approach-content">
+        <p class="approach-title">생활습관 교정 프로그램</p>
+        <p class="approach-desc">갱년기에 맞는 식이요법과 운동 가이드를 제공합니다.<br>수면 패턴 개선과 스트레스 관리도 함께 진행합니다.</p>
+      </div>
+    </div>
+    <div class="approach-card">
+      <div class="approach-icon">04</div>
+      <div class="approach-content">
+        <p class="approach-title">유지 관리 단계</p>
+        <p class="approach-desc">감량 후에도 체중이 유지될 수 있도록<br>단계적으로 관리합니다. 요요 방지가 핵심입니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체크리스트 -->
+  <div class="sb-checklist">
+    <p class="sb-checklist-title">일산갱년기다이어트 체크포인트</p>
+    <div class="check-item">
+      <span class="check-icon">&#10003;</span>
+      <p class="check-text"><strong>체질별 맞춤 처방</strong>으로 개인차를 반영</p>
+    </div>
+    <div class="check-item">
+      <span class="check-icon">&#10003;</span>
+      <p class="check-text"><strong>기초대사량 회복</strong>을 위한 근본적 접근</p>
+    </div>
+    <div class="check-item">
+      <span class="check-icon">&#10003;</span>
+      <p class="check-text"><strong>갱년기 증상 완화</strong>와 체중 관리 병행</p>
+    </div>
+    <div class="check-item">
+      <span class="check-icon">&#10003;</span>
+      <p class="check-text"><strong>원장 직접 상담</strong>으로 세밀한 관리 진행</p>
+    </div>
+  </div>
+
+  <!-- 클로징 -->
+  <div class="closing">
+    <p class="closing-text">
+      "단순히 살을 빼는 것이 아니라,<br>
+      <em>건강한 체중을 유지할 수 있는 몸</em>을<br>
+      만드는 것이 목표입니다."
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

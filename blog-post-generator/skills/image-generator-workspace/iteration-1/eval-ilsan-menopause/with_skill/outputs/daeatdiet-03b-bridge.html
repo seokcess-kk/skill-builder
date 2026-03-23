@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 일산 - Bridge (Pain→Why)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5125B3;
+  --text-dark:      #1A1A1A;
+  --bg-dark:        #2E1566;
+}
+
+/* Bridge-B: 다크 풀밴드 */
+.bridge { width: 100%; position: relative; overflow: hidden; }
+.bridge.bridge-b {
+  padding: 52px 60px;
+  background: linear-gradient(135deg, var(--_original-primary) 0%, var(--_original-accent) 100%);
+  text-align: center;
+}
+.bridge.bridge-b::before {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 400px; height: 200px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bridge.bridge-b .bridge-text {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 21px; font-weight: 500;
+  color: #fff; line-height: 1.9;
+  position: relative; z-index: 1;
+}
+.bridge.bridge-b .bridge-text em {
+  font-style: normal; color: rgba(255,255,255,0.7); font-weight: 600;
+}
+</style>
+</head>
+<body class="accent-gradient">
+
+<div class="bridge bridge-b">
+  <p class="bridge-text">
+    반복되는 실패,<br>
+    그 <em>진짜 원인</em>을 알고 계신가요?
+  </p>
+</div>
+
+</body>
+</html>

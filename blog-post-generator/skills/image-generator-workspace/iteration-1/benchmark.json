@@ -1,0 +1,129 @@
+{
+  "skill_name": "blog-image-generator",
+  "iteration": 1,
+  "configurations": [
+    {
+      "name": "with_skill",
+      "evals": [
+        {
+          "eval_name": "eval-daegu-worker",
+          "pass_rate": 1.0,
+          "passed": 6,
+          "total": 6,
+          "duration_seconds": 355.6,
+          "total_tokens": 115254
+        },
+        {
+          "eval_name": "eval-seomyeon-postpartum",
+          "pass_rate": 1.0,
+          "passed": 6,
+          "total": 6,
+          "duration_seconds": 379.5,
+          "total_tokens": 114642
+        },
+        {
+          "eval_name": "eval-ilsan-menopause",
+          "pass_rate": 1.0,
+          "passed": 6,
+          "total": 6,
+          "duration_seconds": 354.7,
+          "total_tokens": 114573
+        }
+      ],
+      "aggregate": {
+        "mean_pass_rate": 1.0,
+        "mean_duration_seconds": 363.3,
+        "stddev_duration_seconds": 11.2,
+        "mean_tokens": 114823,
+        "stddev_tokens": 303
+      }
+    },
+    {
+      "name": "without_skill",
+      "evals": [
+        {
+          "eval_name": "eval-daegu-worker",
+          "pass_rate": null,
+          "duration_seconds": 236.0,
+          "total_tokens": 29391
+        },
+        {
+          "eval_name": "eval-seomyeon-postpartum",
+          "pass_rate": null,
+          "duration_seconds": 252.2,
+          "total_tokens": 29722
+        },
+        {
+          "eval_name": "eval-ilsan-menopause",
+          "pass_rate": null,
+          "duration_seconds": 216.8,
+          "total_tokens": 27748
+        }
+      ],
+      "aggregate": {
+        "mean_duration_seconds": 235.0,
+        "stddev_duration_seconds": 14.5,
+        "mean_tokens": 28954,
+        "stddev_tokens": 850
+      }
+    }
+  ],
+  "cross_eval_diversity": {
+    "description": "3개 with_skill eval 간 다양성 분석 (핵심 지표)",
+    "assertions": [
+      {
+        "text": "A1: 레시피 다양성 — 3개 eval 모두 다른 레시피",
+        "passed": true,
+        "evidence": "Eval1=#1(클래식), Eval2=#2(웜내러티브), Eval3=#5(매거진프리미엄)"
+      },
+      {
+        "text": "A2: 액센트 모드 다양성 — 2종류 이상",
+        "passed": true,
+        "evidence": "3종류 모두 다름: Primary, Neutral, Gradient"
+      },
+      {
+        "text": "A3: Hook 변형 다양성 — 3개 모두 다른 Hook",
+        "passed": false,
+        "evidence": "Eval1=Hook-A, Eval2=Hook-E, Eval3=Hook-E → E가 중복. 레시피 ②와 ⑤ 모두 Hook-E 지정"
+      },
+      {
+        "text": "A4: CTA 변형 다양성 — 3개 모두 다른 CTA",
+        "passed": false,
+        "evidence": "Eval1=CTA-A, Eval2=CTA-E, Eval3=CTA-E → E가 중복. 레시피 ②와 ⑤ 모두 CTA-E 지정"
+      },
+      {
+        "text": "A5: 밝기 리듬 준수 — 다크 3연속 없음",
+        "passed": true,
+        "evidence": "3개 모두 최대 2연속 다크"
+      },
+      {
+        "text": "A6: 의료 컴플라이언스 — Disclaimer 3항목",
+        "passed": true,
+        "evidence": "3개 모두 광고선언/개인차/부작용 3항목 포함"
+      },
+      {
+        "text": "A7: 섹션 완전성 — HTML 8개 이상",
+        "passed": true,
+        "evidence": "3개 모두 10개 HTML 파일 생성"
+      },
+      {
+        "text": "A8: with vs without 차이 — 체계적 CSS 클래스 사용",
+        "passed": true,
+        "evidence": "with_skill은 hook-a/intro-a 등 체계적 클래스 + CSS 변수 시스템 사용, without_skill은 ad-hoc 인라인 스타일"
+      }
+    ],
+    "summary": {
+      "passed": 6,
+      "failed": 2,
+      "pass_rate": 0.75,
+      "key_finding": "레시피/액센트 다양성은 완벽(A1,A2 통과). 그러나 레시피 ②와 ⑤가 Hook-E, CTA-E를 공유하여 A3,A4 실패. 레시피 간 Hook/CTA 변형 중복을 해소하면 개선 가능."
+    }
+  },
+  "analyst_observations": [
+    "레시피 선택 로직은 정상 작동 — 타겟(직장인/산후/갱년기)에 따라 적합한 레시피 자동 선택",
+    "액센트 모드 3종류 모두 사용 — 같은 #7435FF 브랜드 컬러지만 사용 방식이 달라 시각적 차이 확보",
+    "Hook-E/CTA-E 중복 문제 — 레시피 ②(웜 내러티브)와 ⑤(매거진 프리미엄) 모두 E 변형 사용. 한 쪽의 Hook/CTA를 D 등 다른 변형으로 교체 필요",
+    "with_skill이 without_skill 대비 약 4배 토큰 사용 — 스킬 읽기+분석 오버헤드. 그러나 체계적 CSS 시스템, 컴플라이언스, 밝기 리듬 등 품질 차이 확실",
+    "without_skill 3개 결과물 간 디자인 차이가 거의 없음(같은 purple gradient 패턴 반복) — 스킬 부가가치 확인"
+  ]
+}

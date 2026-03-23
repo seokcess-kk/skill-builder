@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 대구점 — Intro</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #512DAB;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F7FF;
+  --bg-warm:        #F5F2FA;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+  --border-faint:   #E4E0EC;
+}
+
+.intro { background: var(--bg-white); }
+.intro.intro-a { padding: 0; }
+.intro.intro-a .intro-top {
+  background: var(--brand-primary);
+  padding: 40px 50px 60px;
+  position: relative; overflow: hidden;
+}
+.intro.intro-a .intro-top::after {
+  content: ''; position: absolute;
+  bottom: -30px; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 60px;
+  background: var(--bg-white); border-radius: 50%;
+}
+.intro-top-name {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 30px; font-weight: 600;
+  color: #fff; letter-spacing: -0.5px; margin-bottom: 4px;
+}
+.intro-top-role { font-size: 14px; color: rgba(255,255,255,0.55); }
+
+.label-row { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+.label-line { flex: 0 0 32px; height: 1px; background: rgba(255,255,255,0.3); }
+.label-text { font-size: 11px; letter-spacing: 5px; color: rgba(255,255,255,0.5); font-weight: 500; }
+
+.photo-row {
+  display: flex; justify-content: center;
+  margin-top: -36px; position: relative; z-index: 2;
+}
+.photo-box {
+  width: 160px; height: 160px;
+  background: linear-gradient(145deg, #E8E5EE 0%, #D8D3E0 100%);
+  border-radius: 50%; border: 4px solid #fff;
+  box-shadow: 0 4px 20px rgba(116,53,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-box span { font-size: 11px; color: #A09AAC; letter-spacing: 1px; }
+
+.profile-body { padding: 20px 50px 44px; text-align: center; }
+
+.credentials { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 16px 0 20px; }
+.cred-item {
+  font-size: 12px; color: var(--brand-primary);
+  padding: 5px 14px;
+  border: 1px solid rgba(116,53,255,0.15); border-radius: 20px;
+  background: var(--bg-tint);
+}
+
+.detail-row { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 28px; }
+.detail-item { font-size: 13px; color: #6B6573; }
+.detail-sep  { font-size: 11px; color: #C4BFD0; }
+
+.intro-speech {
+  background: var(--bg-tint); border-radius: 8px;
+  padding: 26px 30px; border-left: 3px solid var(--brand-accent);
+  margin: 0 50px 44px;
+}
+.speech-line { font-size: 15px; color: var(--text-body); line-height: 2.1; }
+.speech-line + .speech-line { margin-top: 4px; }
+.speech-highlight { color: var(--brand-primary); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="intro intro-a">
+  <!-- 상단 컬러 밴드 -->
+  <div class="intro-top">
+    <div class="label-row">
+      <span class="label-line"></span>
+      <span class="label-text">INTERVIEW</span>
+    </div>
+    <p class="intro-top-name">김민수 원장</p>
+    <p class="intro-top-role">다이트한의원 대구점 대표원장</p>
+  </div>
+
+  <!-- 사진 오버랩 -->
+  <div class="photo-row">
+    <div class="photo-box">
+      <span>PHOTO</span>
+    </div>
+  </div>
+
+  <!-- 프로필 본문 -->
+  <div class="profile-body">
+    <div class="credentials">
+      <span class="cred-item">한방 비만 전문의</span>
+      <span class="cred-item">체질 진단 전문</span>
+      <span class="cred-item">한약 처방 전문</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-item">다이트한의원 대구점</span>
+      <span class="detail-sep">&middot;</span>
+      <span class="detail-item">대구다이어트한의원</span>
+    </div>
+  </div>
+
+  <!-- 스피치 카드 -->
+  <div class="intro-speech">
+    <p class="speech-line">"안녕하세요, 다이트한의원 대구점 <span class="speech-highlight">김민수</span>입니다."</p>
+    <p class="speech-line">"오늘은 많은 직장인분들이 궁금해하시는<br><span class="speech-highlight">바쁜 일상 속 체질 개선 다이어트</span>에 대해<br>자세히 이야기해보겠습니다."</p>
+    <p class="speech-line">"특히 <span class="speech-highlight">시간이 부족한 직장인</span>분들이<br>가장 많이 하시는 질문을 중심으로 풀어보겠습니다."</p>
+  </div>
+</div>
+
+</body>
+</html>

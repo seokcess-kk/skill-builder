@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 서면점 - Intro</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5128B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F8FC;
+  --bg-warm:        #F5F3F9;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+  --border-faint:   #E4E0EC;
+}
+
+body.accent-neutral {
+  --bg-tint:      #F7F7F8;
+  --bg-warm:      #F3F3F4;
+  --bg-dark:      #2D2D2D;
+  --border-soft:  #E8E8E8;
+  --border-faint: #DEDEDE;
+  --text-sub:     #666666;
+  --text-muted:   #999999;
+  --text-light:   #AAAAAA;
+}
+
+/* Intro-B */
+.intro { background: var(--bg-white); }
+.intro.intro-b { padding: 0; }
+.intro.intro-b .ib-top {
+  display: flex; align-items: center; gap: 36px;
+  padding: 48px 50px 36px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.intro.intro-b .ib-photo { flex-shrink: 0; }
+.photo-box {
+  width: 160px; height: 160px;
+  background: linear-gradient(145deg, #E8E5EE 0%, #D8D3E0 100%);
+  border-radius: 50%; border: 4px solid #fff;
+  box-shadow: 0 4px 20px rgba(116,53,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-box span { font-size: 11px; color: #A09AAC; letter-spacing: 1px; }
+.intro.intro-b .ib-info { flex: 1; }
+.intro.intro-b .ib-name {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 28px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.5px; margin-bottom: 6px;
+}
+.intro.intro-b .ib-role {
+  font-size: 14px; color: var(--text-sub); margin-bottom: 20px;
+}
+.credentials { display: flex; justify-content: flex-start; gap: 6px; flex-wrap: wrap; margin: 0; }
+.cred-item {
+  font-size: 12px; color: var(--brand-primary);
+  padding: 5px 14px;
+  border: 1px solid rgba(116,53,255,0.15); border-radius: 20px;
+  background: var(--bg-tint);
+}
+.intro.intro-b .ib-speech { padding: 28px 50px 44px; }
+.intro-speech {
+  background: var(--bg-tint); border-radius: 8px;
+  padding: 26px 30px; border-left: 3px solid var(--brand-accent);
+}
+.speech-line { font-size: 15px; color: var(--text-body); line-height: 2.1; }
+.speech-line + .speech-line { margin-top: 4px; }
+.speech-highlight { color: var(--brand-primary); font-weight: 600; }
+</style>
+</head>
+<body class="accent-neutral">
+
+<div class="intro intro-b">
+  <!-- 상단: 사진 + 프로필 -->
+  <div class="ib-top">
+    <div class="ib-photo">
+      <div class="photo-box">
+        <span>PHOTO</span>
+      </div>
+    </div>
+    <div class="ib-info">
+      <div class="ib-name">박지영 원장</div>
+      <div class="ib-role">다이트한의원 서면점 대표원장</div>
+      <div class="credentials">
+        <span class="cred-item">한방 비만 전문</span>
+        <span class="cred-item">여성 비만 특화</span>
+        <span class="cred-item">산후 체형관리</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단: 스피치 -->
+  <div class="ib-speech">
+    <div class="intro-speech">
+      <p class="speech-line">"안녕하세요, 다이트한의원 서면점 박지영입니다."</p>
+      <p class="speech-line">"오늘은 많은 산후 여성분들이 궁금해하시는<br>
+      <span class="speech-highlight">출산 후 체형 관리와 호르몬 변화에 맞춘<br>
+      한약 처방</span>에 대해 이야기해보겠습니다."</p>
+      <p class="speech-line">"특히 서면산후다이어트를 고민하시는<br>
+      출산 후 체형 변화로 걱정이 많으신 분들을 위해<br>
+      핵심만 정리해드릴게요."</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

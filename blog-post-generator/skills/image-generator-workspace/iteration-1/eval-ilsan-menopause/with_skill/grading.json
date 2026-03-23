@@ -1,0 +1,13 @@
+{
+  "eval_id": 3,
+  "eval_name": "eval-ilsan-menopause",
+  "run_type": "with_skill",
+  "expectations": [
+    {"text": "레시피가 Eval 1,2와 다른가", "passed": true, "evidence": "Recipe #5 매거진 프리미엄 (Eval 1은 #1, Eval 2는 #2)"},
+    {"text": "액센트 모드가 Eval 1,2와 다른가", "passed": true, "evidence": "Gradient (Eval 1은 Primary, Eval 2는 Neutral)"},
+    {"text": "밝기 리듬 준수", "passed": true, "evidence": "최대 2연속 다크. 패턴: 라→라→라→다→다→라→라→라→라→라"},
+    {"text": "의료 컴플라이언스 적용", "passed": true, "evidence": "Disclaimer 3항목, 부작용 명시, 금지 표현 미사용"},
+    {"text": "섹션 완전성", "passed": true, "evidence": "10개 HTML 파일 생성"},
+    {"text": "Gradient 클라이맥스 효과", "passed": true, "evidence": "Why 섹션에 primary→accent 그라디언트 적용. Bridge-03b도 그라디언트로 클라이맥스 구간 형성"}
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "brand": {
+    "name": "다이트한의원 서면점",
+    "english_name": "DAEATDIET",
+    "homepage": "https://daeatdiet.com",
+    "industry": "의료 (한의원/한방 비만)",
+    "target_persona": "산후 여성 (출산 후 체형 변화 고민, 30~40대)",
+    "keyword": "서면산후다이어트",
+    "expert": {
+      "name": "박지영",
+      "title": "원장",
+      "specialty": "여성 비만 전문"
+    }
+  },
+  "brand_colors": {
+    "extracted_from": "홈페이지 daeatdiet.com",
+    "primary": "#7435FF",
+    "primary_description": "브랜드 메인 퍼플 (차트, 버튼, 액센트)",
+    "accent": "#2E1566",
+    "accent_description": "딥 퍼플 (배경, 깊이감)",
+    "mid_blend": "#5128B3",
+    "bg_tint": "#F7F7F8",
+    "bg_dark": "#2D2D2D",
+    "note": "Neutral 모드 적용으로 bg-tint/bg-dark를 무채색으로 오버라이드"
+  },
+  "composition_recipe": {
+    "number": 2,
+    "name": "웜 내러티브 (Warm Narrative)",
+    "description": "감성 공감 스토리 — 전체 라이트 기조에 Bridge 다크가 리듬 역할",
+    "reason": "산후 여성 타겟, 공감형 원고, 따뜻하고 부드러운 톤이 적합. Hook-E 여백미와 CTA-E 카드의 미니멀 양 끝 호응."
+  },
+  "accent_mode": {
+    "mode": "Neutral 주도",
+    "class": "accent-neutral",
+    "description": "무채색 기반 배경, 브랜드 컬러(#7435FF)는 텍스트와 포인트에만 사용하여 톤다운된 세련미 연출",
+    "reason": "레시피 ② 웜 내러티브의 기본 액센트 모드. 산후 여성 타겟에게 과한 컬러 자극 없이 부드러운 인상 전달"
+  },
+  "brightness_rhythm": {
+    "pattern": "라이트 → 라이트 → 라이트 → 다크(Bridge) → 라이트 → 다크(Bridge) → 라이트 → 라이트 → 라이트(틴트) → 라이트(틴트)",
+    "description": "전체 라이트 기조에 Bridge 2개만 다크로 처리하여 리듬감 부여. Hook-E 화이트와 CTA-E 틴트가 미니멀 양 끝 호응"
+  },
+  "sections": [
+    {
+      "section": "01-hook",
+      "variant": "E",
+      "variant_name": "극미니멀 — 대형 여백 + 단일 문장",
+      "background": "라이트 (white)",
+      "reason": "레시피 ② 지정. 산후 여성 타겟에게 여백 속 한 문장의 여운이 감정적으로 효과적. 과장 없이 문장의 힘으로 스크롤 정지.",
+      "file": "daeatdiet-01-hook.html"
+    },
+    {
+      "section": "02-intro",
+      "variant": "B",
+      "variant_name": "좌우 분할 (사진/텍스트) + 스피치",
+      "background": "라이트 (white)",
+      "reason": "레시피 ② 지정. 전문가 프로필을 좌우 분할로 자연스럽게 소개. 사진 placeholder + 자격 태그 + 스피치 구성.",
+      "file": "daeatdiet-02-intro.html"
+    },
+    {
+      "section": "03-pain",
+      "variant": "C",
+      "variant_name": "스토리텔링 단락 + 이탤릭 인용 강조",
+      "background": "라이트 (white)",
+      "reason": "레시피 ② 지정. 산후 여성의 실제 고민을 내러티브로 풀어 감정 이입 극대화. 이탤릭 인용으로 독자의 공감 유도.",
+      "file": "daeatdiet-03-pain.html"
+    },
+    {
+      "section": "03b-bridge",
+      "variant": "B",
+      "variant_name": "다크 풀밴드 + 흰 텍스트",
+      "background": "다크",
+      "reason": "레시피 ② 지정. 앞뒤 라이트 섹션 사이에서 다크 밴드로 시각적 리듬 전환. Pain→Why 전환점 강조.",
+      "file": "daeatdiet-03b-bridge.html"
+    },
+    {
+      "section": "04-why",
+      "variant": "B",
+      "variant_name": "라이트 + 아이콘 카드 세로 나열",
+      "background": "라이트 (tint)",
+      "reason": "레시피 ② 지정. 호르몬 변화 3가지 원인을 아이콘 카드로 부드럽게 설명. 라이트 배경으로 친근한 이해 유도.",
+      "file": "daeatdiet-04-why.html"
+    },
+    {
+      "section": "04b-bridge",
+      "variant": "B",
+      "variant_name": "다크 풀밴드 + 흰 텍스트",
+      "background": "다크",
+      "reason": "레시피 ② 지정. Why→Solution 전환에 다크 밴드 적용하여 해결책 전환 강조.",
+      "file": "daeatdiet-04b-bridge.html"
+    },
+    {
+      "section": "05-solution",
+      "variant": "B",
+      "variant_name": "어프로치 카드 + 체크리스트",
+      "background": "라이트 (white)",
+      "reason": "레시피 ② 지정. 4단계 맞춤 처방을 어프로치 카드로 구조화하고, 체크리스트로 핵심 특징 정리. 따뜻한 해결 느낌.",
+      "file": "daeatdiet-05-solution.html"
+    },
+    {
+      "section": "06-proof",
+      "variant": "B",
+      "variant_name": "Q&A 코멘트형 스피치 + 후기 1장",
+      "background": "라이트 (white)",
+      "reason": "레시피 ② 지정. 원장의 Q&A 코멘트로 전문가 신뢰감 구축 + 감성 후기로 마무리. 의료광고법 준수하여 개인차 고지 포함.",
+      "file": "daeatdiet-06-proof.html"
+    },
+    {
+      "section": "07-cta",
+      "variant": "E",
+      "variant_name": "카드 스택형 — 틴트 배경 + 플로팅 카드",
+      "background": "라이트 (tint)",
+      "reason": "레시피 ② 지정. Hook-E 극미니멀과 CTA-E 카드 스택이 양 끝에서 호응하여 시각적 완결감. 깔끔한 마무리.",
+      "file": "daeatdiet-07-cta.html"
+    },
+    {
+      "section": "10-disclaimer",
+      "variant": "A",
+      "variant_name": "틴트 배경 + 카드 3장 + accent 보더",
+      "background": "라이트 (tint)",
+      "reason": "의료 업종 필수 3항목(광고 선언/개인차/부작용) 각각 카드로 구분. 3번째 카드에 accent 보더 강조. 의료광고법 제56조 준수.",
+      "file": "daeatdiet-10-disclaimer.html"
+    }
+  ],
+  "compliance": {
+    "industry": "의료 (한의원)",
+    "applied_guide": "references/medical-ad-compliance.md",
+    "checks_passed": [
+      "절대 금지 표현(100%, 완치, 보장, 무조건 등) 미사용 확인",
+      "치료 결과 언급 시 개인차 고지 병기",
+      "타 의료기관 비방/비교 우위 표현 없음",
+      "환자 동의 없는 사례/사진 미포함",
+      "Disclaimer 섹션에 필수 고지 3항목 포함 (광고선언/개인차/부작용)",
+      "부작용 항목에 한약 관련 부작용 명시 (두근거림, 불면, 소화불량, 위장 장애)",
+      "CTA에서 결과 보장 암시 없음"
+    ]
+  },
+  "theme": {
+    "detected": "warm",
+    "reason": "뷰티/라이프스타일 + 공감형 원고 + 여성 타겟 → warm 테마 최적"
+  }
+}

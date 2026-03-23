@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 일산 - Why</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5125B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F7FF;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+/* Why-A: 다크 + 2열 카드 그리드 (Gradient 모드) */
+.why { position: relative; overflow: hidden; }
+.why.why-a {
+  padding: 52px 50px 48px;
+  background: linear-gradient(135deg, var(--_original-primary) 0%, var(--_original-accent) 100%);
+  color: #fff;
+}
+.why.why-a::before {
+  content: ''; position: absolute;
+  top: -80px; right: -60px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.section-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.tag-num  { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
+.tag-line { width: 24px; height: 1px; background: rgba(255,255,255,0.3); }
+.tag-title { font-family: 'Noto Serif CJK KR', Georgia, serif; font-size: 21px; font-weight: 600; color: #fff; letter-spacing: -0.5px; }
+.tag-sub { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 32px; }
+
+.cause-row { display: flex; gap: 12px; margin-bottom: 12px; }
+.cause-card {
+  flex: 1; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 22px 18px;
+}
+.cause-num  { font-size: 28px; font-weight: 700; color: rgba(255,255,255,0.3); line-height: 1; margin-bottom: 10px; }
+.cause-title { font-size: 14.5px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.cause-desc  { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.8; }
+
+.stat-block {
+  margin: 28px 0 24px; text-align: center;
+  padding: 26px 20px;
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+}
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+.stat-value {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 34px; font-weight: 700; color: #fff; margin-bottom: 4px;
+}
+.stat-note  { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+.transition { text-align: center; padding-top: 6px; }
+.transition-text {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 18px; color: #fff; font-weight: 400; line-height: 2;
+}
+.transition-text em { font-style: normal; color: rgba(255,255,255,0.7); font-weight: 600; }
+</style>
+</head>
+<body class="accent-gradient">
+
+<div class="why why-a">
+  <div class="section-tag">
+    <span class="tag-num">04</span>
+    <span class="tag-line"></span>
+  </div>
+  <h2 class="tag-title">갱년기 체중 증가,<br>왜 유독 어려울까요?</h2>
+  <p class="tag-sub">일산갱년기다이어트가 실패하는 진짜 이유</p>
+
+  <!-- 2열 카드 그리드 -->
+  <div class="cause-row">
+    <div class="cause-card">
+      <p class="cause-num">01</p>
+      <p class="cause-title">기초대사량 저하</p>
+      <p class="cause-desc">40대 이후 기초대사량은<br>매년 1~2%씩 감소합니다.<br>같은 양을 먹어도<br>체지방이 축적됩니다.</p>
+    </div>
+    <div class="cause-card">
+      <p class="cause-num">02</p>
+      <p class="cause-title">호르몬 불균형</p>
+      <p class="cause-desc">여성호르몬 감소로<br>내장지방 축적이 가속됩니다.<br>특히 복부와 허리에<br>집중적으로 나타납니다.</p>
+    </div>
+  </div>
+  <div class="cause-row">
+    <div class="cause-card">
+      <p class="cause-num">03</p>
+      <p class="cause-title">체질 불균형</p>
+      <p class="cause-desc">습담(몸속 노폐물)과<br>어혈이 순환을 방해합니다.<br>체질별로 축적 부위와<br>반응이 다릅니다.</p>
+    </div>
+    <div class="cause-card">
+      <p class="cause-num">04</p>
+      <p class="cause-title">잘못된 다이어트 이력</p>
+      <p class="cause-desc">극단적 식이 제한 반복 시<br>근육량이 감소하고<br>요요가 심해지는<br>악순환이 생깁니다.</p>
+    </div>
+  </div>
+
+  <!-- 통계 블록 -->
+  <div class="stat-block">
+    <p class="stat-label">40대 이후 여성의 기초대사량 감소</p>
+    <p class="stat-value">매년 1~2%</p>
+    <p class="stat-note">* 일반적인 의학 문헌 기준이며, 개인에 따라 차이가 있을 수 있습니다</p>
+  </div>
+
+  <!-- 전환 문장 -->
+  <div class="transition">
+    <p class="transition-text">
+      그래서 <em>체중이 아닌 체질</em>을<br>
+      먼저 바꿔야 합니다
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

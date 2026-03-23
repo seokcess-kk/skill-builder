@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.card {
+  width: 680px;
+  min-height: 560px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 56px;
+  position: relative;
+}
+.section-tag {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7435FF;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.5;
+  margin-bottom: 36px;
+}
+.testimonial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.testimonial {
+  background: #FAFAFA;
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  position: relative;
+}
+.testimonial::before {
+  content: '"';
+  font-family: 'Noto Serif KR', serif;
+  font-size: 48px;
+  color: rgba(116, 53, 255, 0.15);
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  line-height: 1;
+}
+.testimonial-text {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.7;
+  padding-left: 4px;
+  margin-bottom: 16px;
+}
+.testimonial-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.meta-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7435FF, #9B6DFF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+.meta-info {
+  display: flex;
+  flex-direction: column;
+}
+.meta-name {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+}
+.meta-detail {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #999;
+}
+.meta-result {
+  margin-left: auto;
+  background: rgba(116, 53, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7435FF;
+}
+.note {
+  margin-top: 24px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px;
+  color: #bbb;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="section-tag">REVIEW</div>
+  <h2 class="section-title">체질 맞춤 관리 후<br>변화를 경험하셨습니다</h2>
+  <div class="testimonial-list">
+    <div class="testimonial">
+      <p class="testimonial-text">폐경 이후 10kg 가까이 찌면서 포기 상태였는데, 체질에 맞는 한약 처방 후 확실히 복부가 줄었어요. 무엇보다 요요가 없어서 만족합니다.</p>
+      <div class="testimonial-meta">
+        <div class="meta-avatar">K</div>
+        <div class="meta-info">
+          <span class="meta-name">K님</span>
+          <span class="meta-detail">52세 · 갱년기 체중 관리</span>
+        </div>
+        <div class="meta-result">3개월 -7kg</div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">운동만으로는 안 빠지던 살이 체질 분석 후 식이 조절과 함께 하니 자연스럽게 빠지기 시작했어요. 컨디션도 훨씬 좋아졌습니다.</p>
+      <div class="testimonial-meta">
+        <div class="meta-avatar">P</div>
+        <div class="meta-info">
+          <span class="meta-name">P님</span>
+          <span class="meta-detail">47세 · 기초대사량 회복</span>
+        </div>
+        <div class="meta-result">2개월 -5kg</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">※ 개인차가 있으며, 실제 상담 내용을 바탕으로 재구성한 후기입니다.</p>
+</div>
+</body>
+</html>

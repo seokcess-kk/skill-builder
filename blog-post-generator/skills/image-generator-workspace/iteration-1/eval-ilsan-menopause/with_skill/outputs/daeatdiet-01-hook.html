@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 일산 - Hook</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5125B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F7FF;
+  --bg-warm:        #F5F2FB;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+  --border-faint:   #E4E0EC;
+}
+
+/* Hook-E: 극미니멀 */
+.hook {
+  min-height: 540px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.hook.hook-e {
+  padding: 100px 70px 90px;
+  background: var(--bg-white);
+  min-height: 580px;
+}
+.hook.hook-e .he-content {
+  text-align: center;
+  max-width: 520px;
+}
+.hook.hook-e .hook-headline.he-single {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--text-dark); line-height: 2.2;
+  word-break: keep-all; letter-spacing: -0.3px;
+}
+.hook.hook-e .hook-headline.he-single em {
+  font-style: normal; color: var(--brand-primary); font-weight: 600;
+}
+.hook.hook-e .he-bottom-line {
+  width: 24px; height: 1px;
+  background: var(--brand-primary); opacity: 0.25;
+  margin: 48px auto 0;
+}
+</style>
+</head>
+<body class="accent-gradient">
+
+<div class="hook hook-e">
+  <div class="he-content">
+    <h1 class="hook-headline he-single">
+      "나이가 들수록 빠지지 않는 살,<br>
+      <em>방법이 아닌 원인</em>부터<br>
+      찾아야 합니다"
+    </h1>
+  </div>
+  <div class="he-bottom-line"></div>
+</div>
+
+</body>
+</html>

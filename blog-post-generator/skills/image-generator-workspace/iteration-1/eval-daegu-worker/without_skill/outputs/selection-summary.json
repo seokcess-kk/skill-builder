@@ -1,0 +1,90 @@
+{
+  "project": "다이트한의원 대구점 블로그 이미지",
+  "keyword": "대구다이어트한의원",
+  "topic": "직장인 다이어트 — 바쁜 일상에서도 가능한 한방 체질 개선 다이어트",
+  "doctor": "김민수 원장 (한방 비만 전문의)",
+  "homepage": "https://daeatdiet.com",
+  "design_choices": {
+    "brand_colors": {
+      "primary": "#7435FF",
+      "dark": "#2E1566",
+      "light": "#9B6BFF",
+      "accent_light": "#B794FF",
+      "background_tint": "#F8F6FE",
+      "source": "홈페이지 크롤링으로 추출"
+    },
+    "typography": {
+      "headline_font": "Noto Serif KR (600, 700, 900)",
+      "body_font": "Noto Sans KR (300, 400, 500, 700)",
+      "headline_size_range": "26px - 32px",
+      "body_size_range": "12px - 17px"
+    },
+    "layout": {
+      "width": "680px (네이버 블로그 최적화)",
+      "style": "Modern clinical — 클린 + 미니멀",
+      "card_border_radius": "12px - 14px",
+      "padding": "50px - 60px",
+      "background_alternation": "white / light-purple / dark-gradient 교차"
+    },
+    "design_principles": [
+      "홈페이지 브랜드 컬러(퍼플 계열) 일관 적용",
+      "Dark gradient(#2E1566 → #7435FF)는 Hook, Solution, CTA에 사용하여 시각적 강조",
+      "Light tint(#F8F6FE)는 Pain, Proof에 사용하여 부드러운 톤 유지",
+      "White background는 Intro, Why에 사용하여 가독성 확보",
+      "카드 기반 UI로 정보 구획화 및 모바일 가독성 확보",
+      "Inline CSS만 사용하여 이미지 변환 호환성 보장"
+    ]
+  },
+  "sections": [
+    {
+      "file": "01_hook.html",
+      "section": "Hook",
+      "description": "오프닝 인용구 — 직장인의 공감을 이끌어내는 질문형 헤드라인",
+      "background": "dark gradient (#2E1566 → #7435FF)"
+    },
+    {
+      "file": "02_intro.html",
+      "section": "Intro",
+      "description": "김민수 원장 프로필 및 전문 분야 소개",
+      "background": "white + top accent bar"
+    },
+    {
+      "file": "03_pain.html",
+      "section": "Pain",
+      "description": "직장인이 겪는 4가지 다이어트 고민 카드 리스트",
+      "background": "light purple tint (#F8F6FE)"
+    },
+    {
+      "file": "04_why.html",
+      "section": "Why",
+      "description": "한의학적 관점의 3가지 비만 원인 분석 (기혈 정체, 비위 저하, 수독)",
+      "background": "white + left accent bar"
+    },
+    {
+      "file": "05_solution.html",
+      "section": "Solution",
+      "description": "한방 체질 개선 3-Step 프로그램 (진단 → 한약+침 → 생활습관)",
+      "background": "dark gradient (#2E1566 → #3D1D80)"
+    },
+    {
+      "file": "06_proof.html",
+      "section": "Proof",
+      "description": "직업별 직장인 3인의 실제 후기 카드",
+      "background": "light purple tint (#F8F6FE)"
+    },
+    {
+      "file": "07_cta.html",
+      "section": "CTA",
+      "description": "1:1 무료 체질 상담 안내 및 예약 유도",
+      "background": "dark gradient (#7435FF → #2E1566)"
+    },
+    {
+      "file": "08_disclaimer.html",
+      "section": "Disclaimer",
+      "description": "의료법 준수 면책조항 및 개인차 안내",
+      "background": "neutral gray (#FAFAFA)"
+    }
+  ],
+  "created_at": "2026-03-19",
+  "method": "without_skill (manual creation)"
+}

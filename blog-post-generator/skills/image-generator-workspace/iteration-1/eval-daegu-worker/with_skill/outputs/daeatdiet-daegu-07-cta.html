@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 대구점 — CTA</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #512DAB;
+  --bg-dark:        #2E1566;
+}
+
+.corner-tl { position: absolute; top: 30px; left: 30px; }
+.corner-tl::before {
+  content: ''; display: block;
+  width: 36px; height: 1px; background: rgba(255,255,255,0.15);
+}
+.corner-tl::after {
+  content: ''; display: block;
+  width: 1px; height: 36px; background: rgba(255,255,255,0.15);
+  position: absolute; top: 0; left: 0;
+}
+.corner-br { position: absolute; bottom: 30px; right: 30px; }
+.corner-br::before {
+  content: ''; display: block;
+  width: 36px; height: 1px; background: rgba(255,255,255,0.15);
+  position: absolute; bottom: 0; right: 0;
+}
+.corner-br::after {
+  content: ''; display: block;
+  width: 1px; height: 36px; background: rgba(255,255,255,0.15);
+  position: absolute; bottom: 0; right: 0;
+}
+
+.cta {
+  min-height: 520px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+}
+.cta.cta-a {
+  background: var(--bg-dark);
+  padding: 60px 50px;
+}
+.cta.cta-a::before {
+  content: ''; position: absolute;
+  top: -50px; left: -30px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(116,53,255,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta.cta-a::after {
+  content: ''; position: absolute;
+  bottom: -70px; right: -50px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(81,45,171,0.15) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-label {
+  font-size: 10px; letter-spacing: 6px;
+  color: rgba(255,255,255,0.25); text-transform: uppercase;
+  margin-bottom: 32px; position: relative; z-index: 1;
+}
+.cta-main {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 30px; font-weight: 500;
+  color: #fff; line-height: 1.7; letter-spacing: -0.5px;
+  position: relative; z-index: 1; margin-bottom: 6px;
+}
+.cta-sub {
+  font-size: 14px; color: rgba(255,255,255,0.45);
+  margin-bottom: 36px; position: relative; z-index: 1;
+}
+.cta-divider {
+  width: 1px; height: 28px; background: #A78BFA;
+  opacity: 0.5; margin: 0 auto 28px; position: relative; z-index: 1;
+}
+.cta-info { position: relative; z-index: 1; }
+.info-line {
+  font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 7px;
+}
+.info-line .accent { color: #A78BFA; }
+.cta-button {
+  display: inline-block; margin-top: 26px;
+  padding: 12px 34px;
+  border: 1px solid rgba(116,53,255,0.5); border-radius: 2px;
+  color: #A78BFA; font-size: 13px; font-weight: 600;
+  letter-spacing: 1.5px; position: relative; z-index: 1;
+  text-decoration: none;
+}
+.goodbye {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 19px; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,0.12); margin-top: 28px;
+  letter-spacing: 4px; position: relative; z-index: 1;
+}
+</style>
+</head>
+<body>
+
+<div class="cta cta-a">
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <p class="cta-label">DAEATDIET</p>
+  <h2 class="cta-main">
+    마지막 다이어트가<br>
+    될 수 있도록
+  </h2>
+  <p class="cta-sub">바쁜 일상 속에서도 가능한 한방 체질 개선</p>
+
+  <div class="cta-divider"></div>
+
+  <div class="cta-info">
+    <p class="info-line"><span class="accent">다이트한의원</span> 대구점</p>
+    <p class="info-line">네이버 예약 · 카카오톡 상담 가능</p>
+  </div>
+
+  <a href="https://daeatdiet.com" class="cta-button">상담 예약하기</a>
+
+  <p class="goodbye">Hello, new me</p>
+</div>
+
+</body>
+</html>

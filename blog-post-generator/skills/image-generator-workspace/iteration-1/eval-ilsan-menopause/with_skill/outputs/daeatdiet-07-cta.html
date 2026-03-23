@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 일산 - CTA</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5125B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F7FF;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+/* CTA-E: 카드 스택형 */
+.cta {
+  min-height: 520px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+}
+.cta.cta-e {
+  background: var(--bg-tint);
+  padding: 60px 50px;
+  min-height: 500px;
+}
+.cta.cta-e .ce-card {
+  background: var(--bg-white);
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 4px 24px rgba(116,53,255,0.08);
+  padding: 48px 44px;
+  max-width: 520px;
+  width: 100%;
+  position: relative; z-index: 1;
+}
+.cta.cta-e .ce-label {
+  font-size: 10px; letter-spacing: 5px;
+  color: var(--brand-primary); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.cta.cta-e .ce-divider {
+  width: 32px; height: 2px;
+  background: var(--brand-primary); opacity: 0.2;
+  margin: 0 auto 20px;
+}
+.cta.cta-e .ce-headline {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 24px; font-weight: 600;
+  color: var(--brand-primary); line-height: 1.8;
+  margin-bottom: 8px;
+}
+.cta.cta-e .ce-subtext {
+  font-size: 14px; color: var(--text-sub);
+  margin-bottom: 28px;
+}
+.cta.cta-e .ce-contact {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 2; margin-bottom: 24px;
+}
+.cta.cta-e .ce-contact-item { margin-bottom: 2px; }
+.cta.cta-e .cta-button.ce-button {
+  display: inline-block;
+  padding: 13px 40px;
+  background: var(--brand-primary); color: #fff;
+  border-radius: 6px;
+  font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  text-decoration: none;
+}
+</style>
+</head>
+<body class="accent-gradient">
+
+<div class="cta cta-e">
+  <div class="ce-card">
+    <p class="ce-label">DAEATDIET</p>
+    <div class="ce-divider"></div>
+    <h2 class="ce-headline">
+      갱년기 체중 관리,<br>
+      마지막 다이어트가<br>
+      될 수 있도록
+    </h2>
+    <p class="ce-subtext">체질부터 바꾸는 일산갱년기다이어트</p>
+
+    <div class="ce-contact">
+      <p class="ce-contact-item">다이트한의원 일산점</p>
+      <p class="ce-contact-item">네이버 예약 · 카카오톡 상담 가능</p>
+    </div>
+
+    <a href="https://daeatdiet.com" class="cta-button ce-button">상담 예약하기</a>
+  </div>
+</div>
+
+</body>
+</html>

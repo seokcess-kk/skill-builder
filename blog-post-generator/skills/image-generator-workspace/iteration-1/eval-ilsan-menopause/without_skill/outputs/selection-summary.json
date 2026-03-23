@@ -1,0 +1,80 @@
+{
+  "project": "다이트한의원 일산점 블로그 이미지",
+  "keyword": "일산갱년기다이어트",
+  "target_audience": "40-50대 갱년기 여성",
+  "doctor": "이정호 원장 (체질 한의학 전공)",
+  "homepage": "https://daeatdiet.com",
+  "design_choices": {
+    "brand_colors": {
+      "primary": "#7435FF",
+      "primary_dark": "#2E1566",
+      "primary_light": "#9B6DFF",
+      "accent": "#FFD966",
+      "alert": "#E04848",
+      "source": "다이트한의원 홈페이지에서 추출한 보라색 계열 브랜드 컬러"
+    },
+    "typography": {
+      "headline": "Noto Serif KR (600, 700, 900)",
+      "body": "Noto Sans KR (400, 500, 700)",
+      "rationale": "Serif 폰트로 신뢰감, Sans 폰트로 가독성 확보"
+    },
+    "layout": {
+      "width": "680px (네이버 블로그 최적화)",
+      "style": "Card-based, clean minimal",
+      "padding": "56px 내부 여백 통일",
+      "border_radius": "12-16px 카드 모서리"
+    },
+    "color_strategy": {
+      "hook": "보라색 그라데이션 배경 — 주목도 극대화",
+      "intro": "흰색 배경 + 보라색 악센트 — 깔끔한 정보 전달",
+      "pain": "밝은 회색 배경 + 빨간 포인트 — 문제 인식 유도",
+      "why": "흰색 배경 + 보라색 아이콘 — 전문성 강조",
+      "solution": "어두운 보라색 배경 + 금색 악센트 — 프리미엄 솔루션 느낌",
+      "proof": "흰색 배경 — 신뢰성 있는 후기 카드",
+      "cta": "보라색 그라데이션 + 금색 버튼 — 강한 행동 유도",
+      "disclaimer": "연회색 배경 — 절제된 톤으로 법적 고지"
+    }
+  },
+  "sections": [
+    {
+      "file": "01_hook.html",
+      "role": "Hook (opening quote)",
+      "description": "40대 이후 같은 식단인데 살이 찌는 이유가 따로 있다는 주목 문구"
+    },
+    {
+      "file": "02_intro.html",
+      "role": "Intro (doctor introduction)",
+      "description": "이정호 원장 소개 — 체질 한의학 전공, 진료 철학"
+    },
+    {
+      "file": "03_pain.html",
+      "role": "Pain (problem identification)",
+      "description": "갱년기 여성의 4가지 공통 고민 나열"
+    },
+    {
+      "file": "04_why.html",
+      "role": "Why (root causes)",
+      "description": "기초대사량 저하, 호르몬 불균형, 체질 불균형 3가지 원인 설명"
+    },
+    {
+      "file": "05_solution.html",
+      "role": "Solution (treatment approach)",
+      "description": "3단계 체질 맞춤 다이어트 프로세스 (분석-치료-관리)"
+    },
+    {
+      "file": "06_proof.html",
+      "role": "Proof (testimonials)",
+      "description": "2건의 갱년기 다이어트 성공 후기"
+    },
+    {
+      "file": "07_cta.html",
+      "role": "CTA (call to action)",
+      "description": "무료 체질 상담 예약 유도"
+    },
+    {
+      "file": "08_disclaimer.html",
+      "role": "Disclaimer",
+      "description": "의료 정보 면책 조항 및 개인차 고지"
+    }
+  ]
+}

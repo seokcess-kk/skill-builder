@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.card {
+  width: 680px;
+  min-height: 560px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 56px;
+  position: relative;
+}
+.section-tag {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7435FF;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+.cause-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cause-card {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.cause-icon-wrap {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  background: linear-gradient(135deg, #7435FF, #9B6DFF);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(116, 53, 255, 0.2);
+}
+.cause-content {
+  flex: 1;
+}
+.cause-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+.cause-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.7;
+}
+.cause-divider {
+  width: 100%;
+  height: 1px;
+  background: #f0f0f0;
+  margin: 0;
+}
+.bottom-note {
+  margin-top: 32px;
+  padding: 20px 24px;
+  background: rgba(116, 53, 255, 0.05);
+  border-radius: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  text-align: center;
+}
+.bottom-note strong {
+  color: #7435FF;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="section-tag">WHY</div>
+  <h2 class="section-title">갱년기 체중 증가,<br>원인은 3가지입니다</h2>
+  <p class="section-subtitle">단순한 과식이 아닌, 몸의 변화가 원인입니다</p>
+  <div class="cause-cards">
+    <div class="cause-card">
+      <div class="cause-icon-wrap">&#9660;</div>
+      <div class="cause-content">
+        <div class="cause-title">기초대사량 저하</div>
+        <p class="cause-desc">40대 이후 매년 기초대사량이 1~2%씩 감소합니다. 같은 양을 먹어도 소비 칼로리가 줄어 체지방이 축적됩니다.</p>
+      </div>
+    </div>
+    <div class="cause-divider"></div>
+    <div class="cause-card">
+      <div class="cause-icon-wrap">&#9883;</div>
+      <div class="cause-content">
+        <div class="cause-title">호르몬 불균형</div>
+        <p class="cause-desc">에스트로겐 감소로 지방 분포가 변하고, 특히 복부 내장지방이 증가하는 체형 변화가 나타납니다.</p>
+      </div>
+    </div>
+    <div class="cause-divider"></div>
+    <div class="cause-card">
+      <div class="cause-icon-wrap">&#9874;</div>
+      <div class="cause-content">
+        <div class="cause-title">체질 불균형</div>
+        <p class="cause-desc">한의학에서는 기혈 순환 저하, 담음 축적 등 체질적 불균형이 갱년기 비만의 근본 원인으로 봅니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-note">
+    <strong>의지의 문제가 아닙니다.</strong> 몸의 변화를 이해하고 체질에 맞게 접근해야 합니다.
+  </div>
+</div>
+</body>
+</html>

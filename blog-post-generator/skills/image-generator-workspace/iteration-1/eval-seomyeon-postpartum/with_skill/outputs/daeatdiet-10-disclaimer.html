@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 서면점 - Disclaimer</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5128B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F8FC;
+  --bg-warm:        #F5F3F9;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+body.accent-neutral {
+  --bg-tint:      #F7F7F8;
+  --bg-warm:      #F3F3F4;
+  --bg-dark:      #2D2D2D;
+  --border-soft:  #E8E8E8;
+  --border-faint: #DEDEDE;
+  --text-sub:     #666666;
+  --text-muted:   #999999;
+  --text-light:   #AAAAAA;
+}
+
+/* Disclaimer-A */
+.disclaimer-section { position: relative; overflow: hidden; }
+.disclaimer-section.disclaimer-a {
+  padding: 52px 50px;
+  background: var(--bg-tint);
+}
+.disclaimer-section.disclaimer-a::before {
+  content: ''; position: absolute;
+  top: -60px; right: -40px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(116,53,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.disc-header {
+  text-align: center; margin-bottom: 28px;
+}
+.disc-title {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.3px; margin-bottom: 8px;
+}
+.disc-line {
+  width: 40px; height: 2px;
+  background: var(--brand-primary); opacity: 0.2; margin: 0 auto;
+}
+.disc-block {
+  background: var(--bg-white); border-radius: 8px;
+  padding: 24px 28px; margin-bottom: 12px;
+  border: 1px solid var(--border-soft);
+  position: relative; z-index: 1;
+}
+.disc-block-accent {
+  background: var(--bg-white); border-radius: 8px;
+  padding: 24px 28px; margin-bottom: 12px;
+  border: 1px solid rgba(116,53,255,0.15);
+  border-left: 3px solid var(--brand-primary);
+  position: relative; z-index: 1;
+}
+.disc-text {
+  font-size: 14px; color: var(--text-sub);
+  line-height: 2; text-align: center;
+}
+.disc-text strong { color: var(--brand-primary); font-weight: 600; }
+.disc-footer {
+  margin-top: 20px; text-align: center; position: relative; z-index: 1;
+}
+.disc-footer-text {
+  font-size: 11px; color: var(--text-light); letter-spacing: 1px;
+}
+</style>
+</head>
+<body class="accent-neutral">
+
+<div class="disclaimer-section disclaimer-a">
+  <!-- 헤더 -->
+  <div class="disc-header">
+    <h2 class="disc-title">안내사항</h2>
+    <div class="disc-line"></div>
+  </div>
+
+  <!-- 카드 1: 광고 선언 -->
+  <div class="disc-block">
+    <p class="disc-text">
+      <strong>광고 고지</strong><br>
+      본 포스팅은 의료법 제56조를 준수하여<br>
+      작성한 의료광고 및 정보성 포스팅입니다.
+    </p>
+  </div>
+
+  <!-- 카드 2: 개인차 안내 -->
+  <div class="disc-block">
+    <p class="disc-text">
+      <strong>개인차 안내</strong><br>
+      모든 한약 처방 및 체중 관리는<br>
+      개인의 체질, 건강 상태, 기저 질환에 따라<br>
+      결과에 차이가 있을 수 있습니다.
+    </p>
+  </div>
+
+  <!-- 카드 3: 부작용 안내 (accent border) -->
+  <div class="disc-block-accent">
+    <p class="disc-text">
+      <strong>부작용 안내</strong><br>
+      한약 복용 시 환자의 상태에 따라<br>
+      두근거림, 불면, 소화불량, 위장 장애 등의<br>
+      부작용이 발생할 수 있으므로,<br>
+      처방 전 반드시 담당 한의사와<br>
+      충분한 상담을 진행하시기 바랍니다.
+    </p>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="disc-footer">
+    <p class="disc-footer-text">DAEATDIET</p>
+  </div>
+</div>
+
+</body>
+</html>

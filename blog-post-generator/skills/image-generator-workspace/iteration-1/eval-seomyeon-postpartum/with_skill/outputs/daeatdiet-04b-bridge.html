@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 서면점 - Bridge (Why → Solution)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5128B3;
+  --bg-dark:        #2E1566;
+}
+
+body.accent-neutral {
+  --bg-dark:      #2D2D2D;
+}
+
+/* Bridge-B */
+.bridge { width: 100%; position: relative; overflow: hidden; }
+.bridge.bridge-b {
+  padding: 52px 60px;
+  background: var(--bg-dark);
+  text-align: center;
+}
+.bridge.bridge-b::before {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 400px; height: 200px;
+  background: radial-gradient(ellipse, rgba(116,53,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bridge.bridge-b .bridge-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 21px; font-weight: 500;
+  color: #fff; line-height: 1.9;
+  position: relative; z-index: 1;
+}
+.bridge.bridge-b .bridge-text em {
+  font-style: normal; color: var(--brand-primary); font-weight: 600;
+}
+</style>
+</head>
+<body class="accent-neutral">
+
+<div class="bridge bridge-b">
+  <p class="bridge-text">
+    원인을 알았다면,<br>
+    이제 <em>방법을 바꿀 차례</em>입니다
+  </p>
+</div>
+
+</body>
+</html>

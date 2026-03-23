@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.card {
+  width: 680px;
+  background: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 56px;
+  position: relative;
+}
+.accent-bar {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: #e0e0e0;
+}
+.disclaimer-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.disclaimer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.disclaimer-item {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.7;
+  padding-left: 16px;
+  position: relative;
+}
+.disclaimer-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #bbb;
+  font-weight: 700;
+}
+.clinic-footer {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+.footer-left strong {
+  color: #7435FF;
+  font-weight: 700;
+}
+.footer-right {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  color: #bbb;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-bar"></div>
+  <div class="disclaimer-title">DISCLAIMER</div>
+  <div class="disclaimer-list">
+    <p class="disclaimer-item">본 콘텐츠는 의료 정보 제공 목적이며, 의학적 진단이나 치료를 대체하지 않습니다.</p>
+    <p class="disclaimer-item">치료 효과는 개인의 체질과 상태에 따라 차이가 있을 수 있습니다.</p>
+    <p class="disclaimer-item">후기는 실제 상담 내용을 바탕으로 재구성되었으며, 개인차가 있습니다.</p>
+    <p class="disclaimer-item">정확한 진단과 치료는 반드시 전문 한의사와 상담 후 진행하시기 바랍니다.</p>
+  </div>
+  <div class="clinic-footer">
+    <div class="footer-left"><strong>다이트한의원</strong> 일산점</div>
+    <div class="footer-right">daeatdiet.com</div>
+  </div>
+</div>
+</body>
+</html>

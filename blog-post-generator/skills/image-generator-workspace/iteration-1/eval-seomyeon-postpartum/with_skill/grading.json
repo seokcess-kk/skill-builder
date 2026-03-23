@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-seomyeon-postpartum",
+  "run_type": "with_skill",
+  "expectations": [
+    {"text": "레시피가 Eval 1과 다른가", "passed": true, "evidence": "Recipe #2 웜 내러티브 (Eval 1은 #1)"},
+    {"text": "액센트 모드가 Eval 1과 다른가", "passed": true, "evidence": "Neutral 주도 (Eval 1은 Primary)"},
+    {"text": "밝기 리듬 준수", "passed": true, "evidence": "최대 1연속 다크. 패턴: 라→라→라→다→라→다→라→라→라→라"},
+    {"text": "의료 컴플라이언스 적용", "passed": true, "evidence": "Disclaimer 3항목, 부작용 명시, 금지 표현 미사용"},
+    {"text": "섹션 완전성", "passed": true, "evidence": "10개 HTML 파일 생성"},
+    {"text": "타겟 맞춤 변형 선택", "passed": true, "evidence": "산후 여성 → 웜 내러티브, Neutral 모드, 스토리텔링 Pain-C — 타겟에 적합한 선택"}
+  ]
+}

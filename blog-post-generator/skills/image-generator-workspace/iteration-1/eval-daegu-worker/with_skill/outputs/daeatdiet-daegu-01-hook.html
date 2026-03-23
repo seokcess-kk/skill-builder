@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 대구점 — Hook</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #512DAB;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F7FF;
+  --bg-warm:        #F5F2FA;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+  --border-faint:   #E4E0EC;
+}
+
+.hook {
+  min-height: 540px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+
+.hook.hook-a {
+  padding: 70px 55px 60px;
+  background: var(--bg-tint);
+}
+.hook.hook-a::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 90%, rgba(116,53,255,0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 15%, rgba(46,21,102,0.03) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.corner-tl { position: absolute; top: 30px; left: 30px; }
+.corner-tl::before {
+  content: ''; display: block;
+  width: 36px; height: 1px; background: rgba(116,53,255,0.2);
+}
+.corner-tl::after {
+  content: ''; display: block;
+  width: 1px; height: 36px; background: rgba(116,53,255,0.2);
+  position: absolute; top: 0; left: 0;
+}
+.corner-br { position: absolute; bottom: 30px; right: 30px; }
+.corner-br::before {
+  content: ''; display: block;
+  width: 36px; height: 1px; background: rgba(116,53,255,0.2);
+  position: absolute; bottom: 0; right: 0;
+}
+.corner-br::after {
+  content: ''; display: block;
+  width: 1px; height: 36px; background: rgba(116,53,255,0.2);
+  position: absolute; bottom: 0; right: 0;
+}
+
+.quote-deco {
+  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-size: 72px; color: var(--brand-primary);
+  opacity: 0.15; line-height: 0.6; margin-bottom: 12px;
+}
+.quote-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--text-dark); line-height: 2.1;
+  text-align: center; word-break: keep-all;
+  position: relative; z-index: 1;
+}
+.quote-text em { font-style: normal; color: var(--brand-primary); font-weight: 600; }
+.quote-line {
+  width: 1px; height: 32px;
+  background: var(--brand-primary); opacity: 0.3;
+  margin: 26px auto 18px;
+}
+.quote-source {
+  font-size: 12px; color: var(--text-muted);
+  letter-spacing: 2.5px; text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="hook hook-a">
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <div class="quote-deco">&ldquo;</div>
+  <p class="quote-text">
+    직장인이라 다이어트가 어렵다고요?<br>
+    <em>바쁜 일상 속에서도 가능한 방법</em>이<br>
+    분명 있습니다
+  </p>
+  <div class="quote-line"></div>
+  <p class="quote-source">DAEATDIET &middot; INTERVIEW</p>
+</div>
+
+</body>
+</html>

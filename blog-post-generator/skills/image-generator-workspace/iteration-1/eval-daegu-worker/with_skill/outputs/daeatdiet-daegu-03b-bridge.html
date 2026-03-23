@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 대구점 — Bridge (Pain → Why)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #512DAB;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --bg-tint:        #F9F7FF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+.bridge { width: 100%; position: relative; overflow: hidden; }
+
+.bridge.bridge-b {
+  padding: 52px 60px;
+  background: var(--bg-dark);
+  text-align: center;
+}
+.bridge.bridge-b::before {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 400px; height: 200px;
+  background: radial-gradient(ellipse, rgba(116,53,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bridge-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 21px; font-weight: 500;
+  color: #fff; line-height: 1.9;
+  position: relative; z-index: 1;
+}
+.bridge-text em { font-style: normal; color: #A78BFA; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="bridge bridge-b">
+  <p class="bridge-text">
+    다이어트 실패의 원인은<br>
+    <em>의지가 아닌 체질</em>에 있습니다
+  </p>
+</div>
+
+</body>
+</html>

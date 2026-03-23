@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=680">
+<title>다이트한의원 서면점 - Solution</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 680px;
+  margin: 0;
+  font-family: 'Noto Sans CJK KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+:root {
+  --_original-primary: #7435FF;
+  --_original-accent:  #2E1566;
+  --brand-primary:  #7435FF;
+  --brand-accent:   #2E1566;
+  --brand-mid:      #5128B3;
+  --text-dark:      #1A1A1A;
+  --text-body:      #2D2D2D;
+  --text-sub:       #5A5363;
+  --text-muted:     #8C8494;
+  --text-light:     #9A93A3;
+  --bg-tint:        #F9F8FC;
+  --bg-warm:        #F5F3F9;
+  --bg-white:       #FFFFFF;
+  --bg-dark:        #2E1566;
+  --border-soft:    #EDEBF2;
+}
+
+body.accent-neutral {
+  --bg-tint:      #F7F7F8;
+  --bg-warm:      #F3F3F4;
+  --bg-dark:      #2D2D2D;
+  --border-soft:  #E8E8E8;
+  --border-faint: #DEDEDE;
+  --text-sub:     #666666;
+  --text-muted:   #999999;
+  --text-light:   #AAAAAA;
+}
+
+/* Section tag */
+.section-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.tag-num { font-size: 11px; font-weight: 700; color: var(--brand-primary); letter-spacing: 2px; }
+.tag-line { width: 24px; height: 1px; background: var(--brand-primary); opacity: 0.3; }
+.section-title {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: -0.5px;
+}
+
+/* Solution-B */
+.solution.solution-b {
+  padding: 52px 50px 48px;
+  background: var(--bg-white);
+}
+.tag-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+.sb-approaches { margin: 26px 0 28px; }
+.approach-card {
+  background: var(--bg-white); border-radius: 10px;
+  padding: 24px 26px; box-shadow: 0 1px 4px rgba(116,53,255,0.06);
+  margin-bottom: 12px; display: flex; gap: 18px; align-items: flex-start;
+  border: 1px solid var(--border-soft);
+}
+.approach-icon {
+  width: 36px; min-width: 36px; height: 36px;
+  background: var(--brand-primary); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 15px; margin-top: 2px;
+}
+.approach-content { flex: 1; }
+.approach-title { font-size: 15.5px; font-weight: 700; color: var(--brand-primary); margin-bottom: 6px; }
+.approach-desc { font-size: 14px; color: var(--text-sub); line-height: 1.9; }
+
+.sb-checklist { margin-bottom: 28px; }
+.sb-checklist-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--brand-primary); letter-spacing: 1px;
+  margin-bottom: 12px; text-transform: uppercase;
+}
+.check-item {
+  display: flex; gap: 16px; align-items: center;
+  padding: 16px 22px; margin-bottom: 8px;
+  background: var(--bg-tint); border-radius: 8px;
+}
+.check-icon {
+  width: 26px; min-width: 26px; height: 26px;
+  background: rgba(116,53,255,0.1); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--brand-primary); font-weight: 700;
+}
+.check-text { font-size: 15px; color: var(--text-body); line-height: 1.8; flex: 1; }
+.check-text strong { color: var(--brand-primary); }
+
+.closing {
+  text-align: center; padding: 22px 20px;
+  background: var(--bg-tint); border-radius: 8px;
+}
+.closing-text {
+  font-family: 'Noto Serif CJK KR', serif;
+  font-size: 16.5px; color: var(--brand-primary); line-height: 2;
+}
+.closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
+</style>
+</head>
+<body class="accent-neutral">
+
+<div class="solution solution-b">
+  <!-- 섹션 헤더 -->
+  <div class="section-tag">
+    <span class="tag-num">05</span>
+    <span class="tag-line"></span>
+  </div>
+  <h2 class="section-title">서면산후다이어트, 다이트한의원의 접근</h2>
+  <p class="tag-sub">호르몬 균형 회복 중심의 4단계 맞춤 처방</p>
+
+  <!-- 어프로치 카드 -->
+  <div class="sb-approaches">
+    <div class="approach-card">
+      <div class="approach-icon">&#x1F50D;</div>
+      <div class="approach-content">
+        <div class="approach-title">1단계 : 산후 체질 정밀 진단</div>
+        <div class="approach-desc">
+          사상체질 분석과 함께 산후 호르몬 상태,<br>
+          기초대사량, 체지방 분포를 종합 진단합니다.<br>
+          출산 시기, 수유 여부, 수면 패턴까지<br>
+          세밀하게 확인하여 처방에 반영합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="approach-card">
+      <div class="approach-icon">&#x1F48A;</div>
+      <div class="approach-content">
+        <div class="approach-title">2단계 : 호르몬 맞춤 한약 처방</div>
+        <div class="approach-desc">
+          에스트로겐 균형 회복과 기초대사량 개선에<br>
+          초점을 맞춘 개인별 맞춤 한약을 처방합니다.<br>
+          수유 중인 경우 안전한 약재만 선별하여<br>
+          수유와 병행 가능한 처방을 구성합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="approach-card">
+      <div class="approach-icon">&#x1F957;</div>
+      <div class="approach-content">
+        <div class="approach-title">3단계 : 산후 맞춤 생활 관리</div>
+        <div class="approach-desc">
+          육아 중에도 실천 가능한 식이 가이드와<br>
+          골반 회복을 겸한 가벼운 운동법을 안내합니다.<br>
+          무리한 운동 대신 일상 속 대사 촉진 방법을<br>
+          원장이 직접 코칭합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="approach-card">
+      <div class="approach-icon">&#x1F4CA;</div>
+      <div class="approach-content">
+        <div class="approach-title">4단계 : 단계별 추적 관리</div>
+        <div class="approach-desc">
+          2주 단위로 체성분 변화를 측정하고<br>
+          처방을 미세 조정합니다.<br>
+          목표 도달 후에도 요요 방지를 위한<br>
+          유지 관리 프로그램을 진행합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체크리스트 -->
+  <div class="sb-checklist">
+    <div class="sb-checklist-title">다이트한의원 산후 프로그램 특징</div>
+    <div class="check-item">
+      <div class="check-icon">&#x2713;</div>
+      <div class="check-text"><strong>수유 중에도 안전한</strong> 약재만 사용</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">&#x2713;</div>
+      <div class="check-text"><strong>1:1 개인별 체질 분석</strong> 후 맞춤 처방</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">&#x2713;</div>
+      <div class="check-text"><strong>육아 중 실천 가능한</strong> 생활습관 코칭</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">&#x2713;</div>
+      <div class="check-text"><strong>요요 방지</strong> 유지 관리 단계 포함</div>
+    </div>
+  </div>
+
+  <!-- 클로징 -->
+  <div class="closing">
+    <p class="closing-text">
+      "단순히 체중을 줄이는 것이 아니라,<br>
+      <em>출산 후 달라진 몸의 균형을 되찾는 것</em>이<br>
+      저희의 목표입니다."
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
