@@ -231,6 +231,39 @@ st.markdown("""
     .stProgress > div > div > div {
         background: #3B82F6;
     }
+
+    /* ── Reduced motion (UUPM checklist) ── */
+    @media (prefers-reduced-motion: reduce) {
+        .metric-card,
+        .stButton > button,
+        .stButton > button:hover,
+        .stButton > button:active {
+            transition: none !important;
+            transform: none !important;
+        }
+    }
+
+    /* ── Responsive metric cards ── */
+    @media (max-width: 640px) {
+        .metric-row {
+            flex-wrap: wrap;
+        }
+        .metric-card {
+            flex: 1 1 calc(50% - 8px);
+            min-width: 120px;
+        }
+    }
+
+    /* ── Focus-visible for keyboard navigation ── */
+    .stButton > button:focus-visible {
+        outline: 2px solid #3B82F6;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+    .stTabs [data-baseweb="tab"]:focus-visible {
+        outline: 2px solid #3B82F6;
+        outline-offset: 2px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -273,8 +306,8 @@ def _extract_file_text(uploaded_file):
     return None
 
 
-def run_script(script_name, args, cwd=None, timeout=None):
-    """Python 스크립트 실행 및 결과 반환"""
+def run_script(script_name, args, cwd=None, timeout=300):
+    """Python 스크립트 실행 및 결과 반환 (기본 timeout: 300초)"""
     cmd = [sys.executable, str(SCRIPTS / script_name)] + args
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
@@ -380,7 +413,7 @@ with st.sidebar:
         help="브랜드 섹션 이미지에 표시될 이름",
     )
     homepage_url = st.text_input(
-        "홈페이지 URL *",
+        "홈페이지 URL",
         placeholder="예: https://example.com",
         help="브랜드 색상/톤 자동 추출",
     )
@@ -430,7 +463,7 @@ with st.sidebar:
 
     # 입력 검증
     seo_ready = keyword and not missing_env
-    brand_ready = brand_name and homepage_url
+    brand_ready = bool(brand_name)
     inputs_ready = seo_ready and brand_ready
 
     # 🚀 실행 버튼 (사이드바 하단)
@@ -446,8 +479,6 @@ with st.sidebar:
             missing.append("타겟 키워드")
         if not brand_name:
             missing.append("브랜드명")
-        if not homepage_url:
-            missing.append("홈페이지 URL")
         if missing_env:
             missing += missing_env
         st.caption(f"필요: {', '.join(missing)}")
@@ -464,7 +495,7 @@ if not inputs_ready:
     <div class="empty-state">
         <div class="empty-state-icon">&#9997;&#65039;</div>
         <div class="empty-state-title">좌측 사이드바에서 정보를 입력하세요</div>
-        <div class="empty-state-desc">타겟 키워드, 브랜드명, 홈페이지 URL을 입력한 후<br><b>원스톱 생성</b> 버튼을 클릭하면 자동으로 블로그 포스트가 생성됩니다.</div>
+        <div class="empty-state-desc">타겟 키워드와 브랜드명을 입력한 후<br><b>원스톱 생성</b> 버튼을 클릭하면 자동으로 블로그 포스트가 생성됩니다.<br><span style="color:#6B7280;font-size:0.85em">홈페이지 URL은 선택 사항입니다 (입력 시 브랜드 컬러/톤 자동 추출)</span></div>
     </div>
     """, unsafe_allow_html=True)
 else:
@@ -493,8 +524,8 @@ else:
         error_occurred = False
 
         try:
-            # Step 1-1: 상위글 수집
-            progress.progress(5, text="Step 1/6 — 상위글 수집 중...")
+            # ── Step 1: 크롤링 + 분석 ──
+            progress.progress(5, text="Step 1/7 — 상위글 수집 중...")
             log.info(f"'{keyword}' 상위 {blog_count}개 블로그 크롤링 중...")
             analysis_dir.mkdir(parents=True, exist_ok=True)
             result = run_script("fetch_competitors.py", [
@@ -507,9 +538,8 @@ else:
                 st.code(result.stderr[-500:] if result.stderr else "Unknown error")
                 error_occurred = True
 
-            # Step 1-2: 패턴 분석
             if not error_occurred and competitor_pages.exists():
-                progress.progress(15, text="Step 1/6 — 패턴 분석 중...")
+                progress.progress(10, text="Step 1/7 — 패턴 분석 중...")
                 result = run_script("analyze_competitors.py", [
                     "--input", str(competitor_pages),
                     "--keyword", keyword,
@@ -519,9 +549,9 @@ else:
                     st.error("Step 1 실패: 패턴 분석")
                     error_occurred = True
 
-            # Step 2: SEO 원고 생성
+            # ── Step 2: SEO 원고 작성 (내부 검증+자동수정 포함) ──
             if not error_occurred and analysis_json.exists():
-                progress.progress(25, text="Step 2/6 — AI 원고 작성 중...")
+                progress.progress(18, text="Step 2/7 — AI 원고 작성 중...")
                 log.info("Claude가 SEO 원고를 작성 중...")
                 content_dir.mkdir(parents=True, exist_ok=True)
                 result = run_script("generate_seo_content.py", [
@@ -534,10 +564,96 @@ else:
                     st.code(result.stderr[-500:] if result.stderr else result.stdout[-500:] if result.stdout else "Unknown error")
                     error_occurred = True
 
-            # Step 3: 브랜드 섹션 이미지 생성 (HTML → PNG)
+            # ── Step 3: SEO 검증 (이미지 삽입 전 — skip_images) ──
+            if not error_occurred and seo_content_path.exists():
+                progress.progress(28, text="Step 3/7 — SEO 검증 중...")
+                v_args = [
+                    "--content", str(seo_content_path),
+                    "--keyword", keyword,
+                    "--skip-images",
+                ]
+                if analysis_json.exists():
+                    v_args += ["--analysis", str(analysis_json)]
+                run_script("validate_seo.py", v_args)
+
+            # ── Step 4: SEO 이미지 (마커 삽입 + 프롬프트 + Gemini) ──
+            if not error_occurred and seo_content_path.exists():
+                # 4-1: 원고 기반 이미지 마커 삽입
+                progress.progress(35, text="Step 4/7 — AI 이미지 배치 중...")
+                log.info("Claude가 원고에 맞는 이미지를 배치 중...")
+                img_marker_args = [
+                    "--seo-content", str(seo_content_path),
+                    "--keyword", keyword,
+                ]
+                if analysis_json.exists():
+                    img_marker_args += ["--analysis", str(analysis_json)]
+                result = run_script("insert_image_markers.py", img_marker_args, timeout=600)
+                if result.returncode != 0:
+                    st.warning("이미지 마커 삽입 실패. 이미지 없이 진행합니다.")
+                else:
+                    # 4-2: 프롬프트 생성
+                    progress.progress(45, text="Step 4/7 — 이미지 프롬프트 생성 중...")
+                    images_dir.mkdir(parents=True, exist_ok=True)
+                    result = run_script("build_prompts.py", [
+                        "--seo-content", str(seo_content_path),
+                        "--output-dir", str(images_dir),
+                    ])
+                    if result.returncode == 0 and prompts_json.exists():
+                        # 4-3: Gemini 이미지 생성
+                        progress.progress(50, text="Step 4/7 — Gemini 이미지 생성 중...")
+                        log.info("Gemini SEO 이미지 생성 중... (1장당 약 10초)")
+                        run_script("generate_images.py", [
+                            "--prompts-file", str(prompts_json),
+                            "--output-dir", str(images_dir),
+                        ])
+
+            # ── Step 5: SEO 최종 검증 (이미지 포함) ──
+            if not error_occurred and seo_content_path.exists():
+                progress.progress(62, text="Step 5/7 — SEO 최종 검증 중...")
+                v_args = ["--content", str(seo_content_path), "--keyword", keyword]
+                if analysis_json.exists():
+                    v_args += ["--analysis", str(analysis_json)]
+                run_script("validate_seo.py", v_args)
+                validation_json_path = content_dir / "seo-validation.json"
+                if validation_json_path.exists():
+                    st.session_state.validation_result = json.loads(validation_json_path.read_text(encoding="utf-8"))
+
+            # ── Step 5-1: SEO 단독 HTML 생성 ──
+            if not error_occurred and seo_content_path.exists():
+                seo_html_args = [
+                    "--seo-content", str(seo_content_path),
+                    "--output-dir", str(content_dir),
+                    "--brand-name", brand_name,
+                    "--keyword", keyword,
+                    "--seo-only",
+                ]
+                # 제목
+                seo_meta_path = content_dir / "seo-meta.json"
+                if seo_meta_path.exists():
+                    try:
+                        _title = json.loads(seo_meta_path.read_text(encoding="utf-8")).get("title", "")
+                        if _title:
+                            seo_html_args += ["--title", _title]
+                    except (json.JSONDecodeError, OSError):
+                        pass
+                # 디자인 플랜에서 컬러/폰트 (있으면)
+                _plan_path = out_dir / "branded" / "html" / "_design_plan.json"
+                if _plan_path.exists():
+                    try:
+                        _dp = json.loads(_plan_path.read_text(encoding="utf-8"))
+                        seo_html_args += ["--primary-color", _dp.get("primary_color", "#333333")]
+                        seo_html_args += ["--font-pairing", _dp.get("font_pairing", "serif-classic")]
+                    except (json.JSONDecodeError, OSError):
+                        pass
+                # SEO 이미지 디렉토리
+                if images_dir.exists():
+                    seo_html_args += ["--seo-images-dir", str(images_dir)]
+                run_script("compose_final.py", seo_html_args)
+
+            # ── Step 6: 브랜드 섹션 이미지 (HTML + PNG) ──
             if not error_occurred:
-                progress.progress(40, text="Step 3/6 — 브랜드 섹션 이미지 생성 중...")
-                log.info("Claude가 브랜드 섹션 HTML을 생성 중... (약 2~3분)")
+                progress.progress(68, text="Step 6/7 — 브랜드 섹션 이미지 생성 중...")
+                log.info("Claude가 브랜드 섹션 HTML을 생성 중... (약 5~10분)")
                 branded_html_dir = out_dir / "branded" / "html"
                 branded_html_dir.mkdir(parents=True, exist_ok=True)
 
@@ -551,11 +667,27 @@ else:
                 if brand_manuscript:
                     gen_args += ["--manuscript", brand_manuscript]
 
-                result = run_script("generate_brand_html.py", gen_args, timeout=600)
+                result = run_script("generate_brand_html.py", gen_args, timeout=1800)
 
-                if result.returncode == 0:
-                    # HTML → PNG 렌더링
-                    progress.progress(55, text="Step 3/6 — PNG 렌더링 중...")
+                has_brand_htmls = any(branded_html_dir.glob("*.html"))
+
+                if result.returncode != 0:
+                    if result.returncode == -1:
+                        st.warning("브랜드 이미지 생성 타임아웃. (개별 실행 탭에서 재시도 가능)")
+                    else:
+                        st.warning("브랜드 이미지 생성 실패.")
+                    error_detail = ""
+                    if result.stdout:
+                        error_detail += f"STDOUT:\n{result.stdout[-800:]}\n"
+                    if result.stderr:
+                        error_detail += f"STDERR:\n{result.stderr[-500:]}"
+                    if error_detail:
+                        with st.expander("오류 상세"):
+                            st.code(error_detail[:1500])
+
+                # HTML이 1개라도 있으면 PNG 렌더링 시도
+                if has_brand_htmls:
+                    progress.progress(88, text="Step 6/7 — PNG 렌더링 중...")
                     log.info("HTML → PNG 변환 중...")
                     branded_dir.mkdir(parents=True, exist_ok=True)
                     result = run_script("render_chrome.py", [
@@ -563,47 +695,12 @@ else:
                     ])
                     if result.returncode != 0:
                         st.warning("PNG 렌더링 실패 (HTML은 생성됨).")
-                else:
-                    st.warning("브랜드 이미지 생성 실패. SEO 원고만으로 진행합니다.")
-                    error_detail = ""
-                    if result.stdout:
-                        error_detail += f"STDOUT:\n{result.stdout[-500:]}\n"
-                    if result.stderr:
-                        error_detail += f"STDERR:\n{result.stderr[-500:]}"
-                    if error_detail:
-                        st.code(error_detail[:1000])
+                elif result.returncode != 0:
+                    st.info("SEO 원고만으로 진행합니다.")
 
-            # Step 4: SEO 검증
+            # ── Step 7: 최종 HTML 조합 ──
             if not error_occurred and seo_content_path.exists():
-                progress.progress(65, text="Step 4/6 — SEO 검증 중...")
-                v_args = ["--content", str(seo_content_path), "--keyword", keyword]
-                if analysis_json.exists():
-                    v_args += ["--analysis", str(analysis_json)]
-                run_script("validate_seo.py", v_args)
-                validation_json_path = content_dir / "seo-validation.json"
-                if validation_json_path.exists():
-                    st.session_state.validation_result = json.loads(validation_json_path.read_text(encoding="utf-8"))
-
-            # Step 5: SEO 이미지 생성
-            if not error_occurred and seo_content_path.exists():
-                progress.progress(75, text="Step 5/6 — SEO 이미지 프롬프트 생성 중...")
-                images_dir.mkdir(parents=True, exist_ok=True)
-                result = run_script("build_prompts.py", [
-                    "--seo-content", str(seo_content_path),
-                    "--output-dir", str(images_dir),
-                    "--keyword", keyword,
-                ])
-                if result.returncode == 0 and prompts_json.exists():
-                    progress.progress(80, text="Step 5/6 — Gemini 이미지 생성 중...")
-                    log.info("Gemini SEO 이미지 생성 중... (1장당 약 10초)")
-                    run_script("generate_images.py", [
-                        "--prompts-file", str(prompts_json),
-                        "--output-dir", str(images_dir),
-                    ])
-
-            # Step 6: 최종 HTML 생성
-            if not error_occurred and seo_content_path.exists():
-                progress.progress(92, text="Step 6/6 — 최종 HTML 조합 중...")
+                progress.progress(94, text="Step 7/7 — 최종 HTML 조합 중...")
                 final_dir.mkdir(parents=True, exist_ok=True)
                 c_args = [
                     "--seo-content", str(seo_content_path),
@@ -619,7 +716,7 @@ else:
 
                 result = run_script("compose_final.py", c_args)
                 if result.returncode != 0:
-                    st.error("Step 6 실패: 최종 HTML 생성")
+                    st.error("Step 7 실패: 최종 HTML 생성")
                     st.code(result.stderr[-500:] if result.stderr else "Unknown error")
                     error_occurred = True
 
@@ -824,7 +921,7 @@ else:
             with st.spinner("Claude 원고 작성 중..."):
                 r = run_script("generate_seo_content.py", [
                     "--keyword", keyword, "--analysis", str(analysis_json), "--output-dir", str(content_dir),
-                ])
+                ], timeout=600)
             if r.returncode == 0:
                 st.success("완료")
                 st.rerun()
@@ -847,7 +944,7 @@ else:
                 if brand_manuscript:
                     gen_args += ["--manuscript", brand_manuscript]
                 with st.spinner("Claude 브랜드 HTML 생성 중..."):
-                    r = run_script("generate_brand_html.py", gen_args)
+                    r = run_script("generate_brand_html.py", gen_args, timeout=1800)
                 if r.returncode == 0:
                     st.success("완료")
                 else:
@@ -876,28 +973,31 @@ else:
         st.divider()
 
         # Step 4
-        st.markdown("#### Step 4. SEO 검증")
-        if st.button("✅ SEO 검증", use_container_width=True, key="manual_validate",
-                      disabled=not seo_content_path.exists()):
-            args = ["--content", str(seo_content_path), "--keyword", keyword]
-            if analysis_json.exists():
-                args += ["--analysis", str(analysis_json)]
-            with st.spinner("검증 중..."):
-                r = run_script("validate_seo.py", args)
-            st.code(r.stdout or r.stderr, language="text")
-
-        st.divider()
-
-        # Step 5
-        st.markdown("#### Step 5. SEO 이미지 생성")
-        c3, c4 = st.columns(2)
-        with c3:
+        st.markdown("#### Step 4. SEO 이미지 생성")
+        c3a, c3b, c4 = st.columns(3)
+        with c3a:
+            if st.button("📍 이미지 배치", use_container_width=True, key="manual_markers",
+                          disabled=not seo_content_path.exists()):
+                img_marker_args = [
+                    "--seo-content", str(seo_content_path), "--keyword", keyword,
+                ]
+                if analysis_json.exists():
+                    img_marker_args += ["--analysis", str(analysis_json)]
+                with st.spinner("Claude 이미지 배치 중..."):
+                    r = run_script("insert_image_markers.py", img_marker_args, timeout=600)
+                if r.returncode == 0:
+                    st.success("완료")
+                    st.rerun()
+                else:
+                    st.error("실패")
+                    st.code(r.stderr[-500:] if r.stderr else r.stdout[-500:] if r.stdout else "")
+        with c3b:
             if st.button("🎨 프롬프트 생성", use_container_width=True, key="manual_prompt",
                           disabled=not seo_content_path.exists()):
                 images_dir.mkdir(parents=True, exist_ok=True)
                 with st.spinner("생성 중..."):
                     r = run_script("build_prompts.py", [
-                        "--seo-content", str(seo_content_path), "--output-dir", str(images_dir), "--keyword", keyword,
+                        "--seo-content", str(seo_content_path), "--output-dir", str(images_dir),
                     ])
                 st.success("완료") if r.returncode == 0 else st.error("실패")
         with c4:
@@ -908,6 +1008,19 @@ else:
                         "--prompts-file", str(prompts_json), "--output-dir", str(images_dir),
                     ])
                 st.code(r.stdout or r.stderr, language="text")
+
+        st.divider()
+
+        # Step 5
+        st.markdown("#### Step 5. SEO 최종 검증")
+        if st.button("✅ SEO 검증", use_container_width=True, key="manual_validate",
+                      disabled=not seo_content_path.exists()):
+            args = ["--content", str(seo_content_path), "--keyword", keyword]
+            if analysis_json.exists():
+                args += ["--analysis", str(analysis_json)]
+            with st.spinner("검증 중..."):
+                r = run_script("validate_seo.py", args)
+            st.code(r.stdout or r.stderr, language="text")
 
         st.divider()
 

@@ -53,8 +53,10 @@ python scripts/render_chrome.py \
 입력: 타겟 키워드
   ↓
 Step 1: 상위글 크롤링 + 패턴 분석
-Step 2: SEO 텍스트 작성 (A등급까지 검증 반복)
-Step 3: Gemini 이미지 생성
+Step 2: SEO 텍스트 작성 (내부 검증 → C/D등급이면 자동 수정 1회)
+Step 3: SEO 검증 (이미지 삽입 전)
+Step 4: SEO 이미지 (마커 삽입 + Gemini 생성)
+Step 5: SEO 최종 검증 (이미지 포함)
   ↓
 출력: output/{keyword-slug}/seo/
 ```
@@ -67,12 +69,19 @@ Step 3: Gemini 이미지 생성
 python scripts/fetch_competitors.py --keyword "{키워드}" --output-dir output/{slug}/seo/analysis/
 python scripts/analyze_competitors.py --input output/{slug}/seo/analysis/competitor-pages.json --keyword "{키워드}" --output-dir output/{slug}/seo/analysis/
 
-# Step 2: SEO 텍스트 작성 (Claude) → 검증
-python scripts/validate_seo.py --content output/{slug}/seo/content/seo-content.md --keyword "{키워드}" --analysis output/{slug}/seo/analysis/competitor-analysis.json
+# Step 2: SEO 텍스트 작성 (Claude) — 내부 검증+자동수정 포함
+python scripts/generate_seo_content.py --keyword "{키워드}" --analysis output/{slug}/seo/analysis/competitor-analysis.json --output-dir output/{slug}/seo/content/
 
-# Step 3: 이미지 프롬프트 생성 + Gemini 이미지 생성
-python scripts/build_prompts.py --seo-content output/{slug}/seo/content/seo-content.md --output-dir output/{slug}/seo/images/ --keyword "{키워드}"
+# Step 3: SEO 검증 (이미지 삽입 전)
+python scripts/validate_seo.py --content output/{slug}/seo/content/seo-content.md --keyword "{키워드}" --analysis output/{slug}/seo/analysis/competitor-analysis.json --skip-images
+
+# Step 4: SEO 이미지 (마커 삽입 + 프롬프트 + Gemini)
+python scripts/insert_image_markers.py --seo-content output/{slug}/seo/content/seo-content.md --keyword "{키워드}" --analysis output/{slug}/seo/analysis/competitor-analysis.json
+python scripts/build_prompts.py --seo-content output/{slug}/seo/content/seo-content.md --output-dir output/{slug}/seo/images/
 python scripts/generate_images.py --prompts-file output/{slug}/seo/images/prompts.json --output-dir output/{slug}/seo/images/
+
+# Step 5: SEO 최종 검증 (이미지 포함)
+python scripts/validate_seo.py --content output/{slug}/seo/content/seo-content.md --keyword "{키워드}" --analysis output/{slug}/seo/analysis/competitor-analysis.json
 ```
 
 ### Phase 3: 최종 조합
@@ -93,7 +102,7 @@ python scripts/compose_final.py \
 
 ```
 [브랜드 이미지] Hook → Intro → Pain → Bridge → Why → Solution → Proof → CTA
-[SEO 텍스트]   소제목 + 본문 + Gemini 이미지 (7~8장)
+[SEO 텍스트]   소제목 + 본문 + Gemini 이미지 (원고 기반 자동 배치)
 [Disclaimer]   면책 조항 (맨 하단)
 ```
 
@@ -153,13 +162,16 @@ blog-post-generator/
 │           ├── image-prompt-templates.md
 │           └── medical-ad-compliance.md
 ├── scripts/
-│   ├── render_chrome.py              ← HTML→PNG 렌더링
-│   ├── render.sh                     ← HTML→PNG (wkhtmltoimage)
-│   ├── fetch_competitors.py          ← 네이버 상위글 크롤링
-│   ├── analyze_competitors.py        ← 상위글 패턴 분석
-│   ├── build_prompts.py              ← 이미지 프롬프트 생성
-│   ├── generate_images.py            ← Gemini 이미지 생성
-│   ├── validate_seo.py               ← SEO 원고 검증
-│   └── compose_final.py              ← 최종 HTML 조합
+│   ├── utils.py                      ← 공유 유틸리티
+│   ├── fetch_competitors.py          ← Step 1: 네이버 상위글 크롤링
+│   ├── analyze_competitors.py        ← Step 1: 패턴 분석 (텍스트만)
+│   ├── generate_seo_content.py       ← Step 2: SEO 원고 생성 (내부 검증+자동수정)
+│   ├── generate_brand_html.py        ← Step 3: 브랜드 HTML 생성
+│   ├── render_chrome.py              ← Step 3: HTML→PNG 렌더링
+│   ├── insert_image_markers.py       ← Step 4: 원고 기반 이미지 마커 삽입
+│   ├── build_prompts.py              ← Step 4: 마커 → prompts.json
+│   ├── generate_images.py            ← Step 4: Gemini 이미지 생성
+│   ├── validate_seo.py               ← Step 2 내부 검증 + Step 5 최종 검증
+│   └── compose_final.py              ← Step 6: 최종 HTML 조합
 └── output/                           ← 실행 시 생성
 ```

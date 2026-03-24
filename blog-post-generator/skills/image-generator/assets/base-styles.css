@@ -4,9 +4,9 @@
    Brand: CSS Custom Properties 기반 (브랜드별 동적 적용)
    Serif/Sans 조합, 절제된 프리미엄 톤
 
-   폰트 (로컬 전용):
-   - Display: 'Noto Serif CJK KR'
-   - Body:    'Noto Sans CJK KR'
+   폰트 (CSS 변수 기반, Phase 1에서 동적 선택):
+   - Display: var(--font-display) — 기본 'Noto Serif KR'
+   - Body:    var(--font-body) — 기본 'Noto Sans KR'
    wkhtmltoimage --width 680
 
    액센트 모드 (body 클래스):
@@ -35,7 +35,7 @@
 body {
   width: 680px;
   margin: 0;
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   word-break: keep-all;
 }
@@ -56,12 +56,14 @@ body {
   --text-dark:      #1A1A1A;
   --text-body:      #2D2D2D;
   --text-sub:       #5A5363;
-  --text-muted:     #8C8494;
+  --text-muted:     #706878;
   --text-light:     #9A93A3;
   --bg-tint:        #F9F8FC;      /* faint purple tint */
   --bg-warm:        #F5F3F9;
   --bg-white:       #FFFFFF;
   --bg-dark:        #2E1566;
+  --bg-dark-deep:   #1A0A3D;
+  --bg-dark-blend:  #1A3566;
   --border-soft:    #EDEBF2;
   --border-faint:   #E4E0EC;
 
@@ -70,13 +72,17 @@ body {
   --_swap-tint:     #F5F8FF;
   --_swap-warm:     #EEF3FF;
 
+  /* 폰트 변수 (Phase 1 css_overrides로 동적 교체) */
+  --font-display: 'Noto Serif KR', serif;
+  --font-body: 'Noto Sans KR', sans-serif;
+
   /* 테마 변수 — body.theme-{name}으로 오버라이드 */
-  --theme-heading-font: 'Noto Serif CJK KR', serif;
+  --theme-heading-font: var(--font-display);
   --theme-heading-weight: 600;
   --theme-letter-spacing: -0.5px;
   --theme-line-height: 2.1;
   --theme-radius: 8px;
-  --theme-shadow: 0 1px 4px rgba(46,21,102,0.06);
+  --theme-shadow: 0 1px 4px color-mix(in srgb, var(--brand-primary) 6%, transparent);
   --theme-border-width: 1px;
   --theme-corner-size: 36px;
 }
@@ -106,7 +112,7 @@ body.accent-neutral {
   --border-soft:  #E8E8E8;
   --border-faint: #DEDEDE;
   --text-sub:     #666666;
-  --text-muted:   #999999;
+  --text-muted:   #767676;
   --text-light:   #AAAAAA;
 }
 /* neutral 모드에서 다크 섹션 radial glow 억제 */
@@ -156,22 +162,22 @@ body.accent-gradient .cta.cta-c {
 .corner-tl { position: absolute; top: 30px; left: 30px; }
 .corner-tl::before {
   content: ''; display: block;
-  width: var(--theme-corner-size); height: var(--theme-border-width); background: rgba(46,21,102,0.2);
+  width: var(--theme-corner-size); height: var(--theme-border-width); background: color-mix(in srgb, var(--brand-primary) 20%, transparent);
 }
 .corner-tl::after {
   content: ''; display: block;
-  width: var(--theme-border-width); height: var(--theme-corner-size); background: rgba(46,21,102,0.2);
+  width: var(--theme-border-width); height: var(--theme-corner-size); background: color-mix(in srgb, var(--brand-primary) 20%, transparent);
   position: absolute; top: 0; left: 0;
 }
 .corner-br { position: absolute; bottom: 30px; right: 30px; }
 .corner-br::before {
   content: ''; display: block;
-  width: var(--theme-corner-size); height: var(--theme-border-width); background: rgba(46,21,102,0.2);
+  width: var(--theme-corner-size); height: var(--theme-border-width); background: color-mix(in srgb, var(--brand-primary) 20%, transparent);
   position: absolute; bottom: 0; right: 0;
 }
 .corner-br::after {
   content: ''; display: block;
-  width: var(--theme-border-width); height: var(--theme-corner-size); background: rgba(46,21,102,0.2);
+  width: var(--theme-border-width); height: var(--theme-corner-size); background: color-mix(in srgb, var(--brand-primary) 20%, transparent);
   position: absolute; bottom: 0; right: 0;
 }
 
@@ -184,6 +190,7 @@ body.accent-gradient .cta.cta-c {
 }
 
 /* --- Shared profile / intro sub-components --- */
+/* DEPRECATED: photo-box 사용 금지 — 전문가 사진/이미지 삽입 금지 규칙에 따라 제거 예정
 .photo-box {
   width: 160px; height: 160px;
   background: linear-gradient(145deg, #E8E5EE 0%, #D8D3E0 100%);
@@ -192,12 +199,13 @@ body.accent-gradient .cta.cta-c {
   display: flex; align-items: center; justify-content: center;
 }
 .photo-box span { font-size: 11px; color: #A09AAC; letter-spacing: 1px; }
+*/
 
 .credentials { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 16px 0 20px; }
 .cred-item {
   font-size: 12px; color: var(--brand-primary);
   padding: 5px 14px;
-  border: 1px solid rgba(46,21,102,0.15); border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 15%, transparent); border-radius: 20px;
   background: var(--bg-tint);
 }
 
@@ -222,7 +230,7 @@ body.accent-gradient .cta.cta-c {
 }
 .issue-icon {
   width: 36px; min-width: 36px; height: 36px; border-radius: 8px;
-  background: rgba(0,122,255,0.15);
+  background: color-mix(in srgb, var(--brand-accent) 15%, transparent);
   display: flex; align-items: center; justify-content: center;
   font-size: 15px; margin-top: 1px;
 }
@@ -252,7 +260,7 @@ body.accent-gradient .cta.cta-c {
 }
 .check-icon {
   width: 26px; min-width: 26px; height: 26px;
-  background: rgba(0,122,255,0.1); border-radius: 50%;
+  background: color-mix(in srgb, var(--brand-accent) 10%, transparent); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; color: var(--brand-accent); font-weight: 700;
 }
@@ -267,7 +275,7 @@ body.accent-gradient .cta.cta-c {
 .compare th:last-child  { background: var(--brand-primary); color: #fff; }
 .compare td { padding: 12px 20px; font-size: 13px; text-align: center; border-bottom: 1px solid #F4F2F8; }
 .compare td:first-child { color: var(--text-muted); }
-.compare td:last-child  { color: var(--brand-primary); font-weight: 500; background: rgba(46,21,102,0.02); }
+.compare td:last-child  { color: var(--brand-primary); font-weight: 500; background: color-mix(in srgb, var(--brand-primary) 2%, transparent); }
 .compare tr:last-child td { border-bottom: none; }
 
 /* --- Review components (공통) --- */
@@ -282,7 +290,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-tint); border-radius: 8px;
 }
 .review-qm {
-  font-family: 'Noto Serif CJK KR', serif; font-size: 36px;
+  font-family: var(--font-display); font-size: 36px;
   color: var(--brand-primary); opacity: 0.15;
   line-height: 0.6; margin-bottom: 10px;
 }
@@ -319,12 +327,12 @@ body.accent-gradient .cta.cta-c {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 30% 90%, rgba(46,21,102,0.03) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 15%, rgba(0,122,255,0.03) 0%, transparent 55%);
+    radial-gradient(ellipse at 30% 90%, color-mix(in srgb, var(--brand-primary) 3%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 15%, color-mix(in srgb, var(--brand-accent) 3%, transparent) 0%, transparent 55%);
   pointer-events: none;
 }
 .hook.hook-a .quote-deco {
-  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 72px; color: var(--brand-primary);
   opacity: 0.15; line-height: 0.6; margin-bottom: 12px;
 }
@@ -356,8 +364,8 @@ body.accent-gradient .cta.cta-c {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 20% 110%, rgba(107,79,160,0.35) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% -10%, rgba(0,122,255,0.15) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 110%, color-mix(in srgb, var(--brand-mid) 35%, transparent) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% -10%, color-mix(in srgb, var(--brand-accent) 15%, transparent) 0%, transparent 50%);
   pointer-events: none;
 }
 .hook.hook-b .hb-label {
@@ -366,7 +374,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 36px; position: relative; z-index: 1;
 }
 .hook.hook-b .quote-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 30px; font-weight: 500;
   color: #fff; line-height: 1.85;
   letter-spacing: -0.5px; word-break: keep-all;
@@ -400,7 +408,7 @@ body.accent-gradient .cta.cta-c {
   content: '';
   position: absolute; top: 0; right: 0;
   width: 220px; height: 220px;
-  background: radial-gradient(circle, rgba(46,21,102,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-primary) 4%, transparent) 0%, transparent 70%);
   pointer-events: none;
 }
 .hook.hook-c .hc-inner {
@@ -408,7 +416,7 @@ body.accent-gradient .cta.cta-c {
   position: relative; z-index: 1; width: 100%;
 }
 .hook.hook-c .hc-quote-mark {
-  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 120px; font-weight: 700;
   color: var(--brand-primary); opacity: 0.08;
   line-height: 0.75; flex-shrink: 0; margin-top: -8px;
@@ -420,7 +428,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 24px;
 }
 .hook.hook-c .quote-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 22px; font-weight: 400;
   color: var(--text-dark); line-height: 2.1; word-break: keep-all;
 }
@@ -467,7 +475,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 20px;
 }
 .hook.hook-d .hook-headline {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 26px; font-weight: 500;
   color: var(--text-dark); line-height: 1.9;
   word-break: keep-all; margin-bottom: 20px;
@@ -493,7 +501,7 @@ body.accent-gradient .cta.cta-c {
   max-width: 520px;
 }
 .hook.hook-e .hook-headline.he-single {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 28px; font-weight: 400;
   color: var(--text-dark); line-height: 2.2;
   word-break: keep-all; letter-spacing: -0.3px;
@@ -529,7 +537,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-white); border-radius: 50%;
 }
 .intro.intro-a .intro-top-name {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 30px; font-weight: 600;
   color: #fff; letter-spacing: -0.5px; margin-bottom: 4px;
 }
@@ -551,7 +559,7 @@ body.accent-gradient .cta.cta-c {
 .intro.intro-b .ib-photo { flex-shrink: 0; }
 .intro.intro-b .ib-info { flex: 1; }
 .intro.intro-b .ib-name {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 28px; font-weight: 600;
   color: var(--brand-primary); letter-spacing: -0.5px; margin-bottom: 6px;
 }
@@ -574,7 +582,7 @@ body.accent-gradient .cta.cta-c {
   margin: 0 auto 32px;
 }
 .intro.intro-c .ic-name {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 30px; font-weight: 600;
   color: var(--brand-primary); letter-spacing: -0.5px; margin-bottom: 8px;
 }
@@ -585,7 +593,7 @@ body.accent-gradient .cta.cta-c {
 .intro.intro-c .ic-creds .cred-item { /* inherits shared .cred-item */ }
 .intro.intro-c .ic-divider {
   width: 1px; height: 28px;
-  background: rgba(46,21,102,0.15);
+  background: color-mix(in srgb, var(--brand-primary) 15%, transparent);
   margin: 0 auto 28px;
 }
 .intro.intro-c .intro-speech {
@@ -615,7 +623,7 @@ body.accent-gradient .cta.cta-c {
 .voice-card:nth-child(2)::before { background: var(--brand-accent); }
 .voice-card:nth-child(3)::before { background: var(--brand-mid); }
 .voice-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 15.5px; color: #333; line-height: 1.9; font-style: italic;
 }
 .voice-meta { font-size: 12px; color: var(--text-light); margin-top: 8px; }
@@ -633,7 +641,7 @@ body.accent-gradient .cta.cta-c {
   color: rgba(255,255,255,0.55); margin-bottom: 10px;
 }
 .pain.pain-b .pb-q-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 18px; font-weight: 500; color: #fff; line-height: 1.85;
 }
 .pain.pain-b .pb-a {
@@ -651,7 +659,7 @@ body.accent-gradient .cta.cta-c {
 }
 .pain.pain-b .pb-bridge {
   margin-top: 28px;
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 17px; font-weight: 500;
   color: var(--brand-primary); line-height: 1.9; text-align: center;
 }
@@ -670,7 +678,7 @@ body.accent-gradient .cta.cta-c {
   padding: 22px 28px; margin-bottom: 28px;
 }
 .pain.pain-c .pc-quote-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 17px; font-style: italic;
   color: var(--brand-primary); line-height: 2;
 }
@@ -701,7 +709,7 @@ body.accent-gradient .cta.cta-c {
 }
 .bridge.bridge-a .ba-rule-bottom { margin-top: 28px; margin-bottom: 0; }
 .bridge.bridge-a .bridge-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 19px; font-weight: 500;
   color: var(--brand-primary); line-height: 1.9;
 }
@@ -717,11 +725,11 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 400px; height: 200px;
-  background: radial-gradient(ellipse, rgba(0,122,255,0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--brand-accent) 12%, transparent) 0%, transparent 70%);
   pointer-events: none;
 }
 .bridge.bridge-b .bridge-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 21px; font-weight: 500;
   color: #fff; line-height: 1.9;
   position: relative; z-index: 1;
@@ -740,7 +748,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 20px;
 }
 .bridge.bridge-c .bridge-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 19px; font-weight: 400; font-style: italic;
   color: var(--text-dark); line-height: 2;
 }
@@ -764,7 +772,7 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   top: -80px; right: -60px;
   width: 360px; height: 360px;
-  background: radial-gradient(circle, rgba(0,122,255,0.1) 0%, transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-accent) 10%, transparent) 0%, transparent 65%);
   pointer-events: none;
 }
 .why.why-a .tag-title  { color: #fff; }
@@ -786,18 +794,18 @@ body.accent-gradient .cta.cta-c {
 .stat-block {
   margin: 28px 0 24px; text-align: center;
   padding: 26px 20px;
-  border: 1px solid rgba(0,122,255,0.35); border-radius: 8px;
-  background: rgba(0,122,255,0.12);
+  border: 1px solid color-mix(in srgb, var(--brand-accent) 35%, transparent); border-radius: 8px;
+  background: color-mix(in srgb, var(--brand-accent) 12%, transparent);
 }
 .stat-label { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
 .stat-value {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 34px; font-weight: 700; color: var(--brand-accent); margin-bottom: 4px;
 }
 .stat-note  { font-size: 12px; color: rgba(255,255,255,0.55); }
 .why.why-a .transition { text-align: center; padding-top: 6px; }
 .why.why-a .transition-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 18px; color: #fff; font-weight: 400; line-height: 2;
 }
 .why.why-a .transition-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
@@ -812,7 +820,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-white); border-radius: 10px;
   padding: 22px 24px; margin-bottom: 10px;
   display: flex; align-items: flex-start; gap: 18px;
-  box-shadow: 0 1px 4px rgba(46,21,102,0.05);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--brand-primary) 5%, transparent);
   border: 1px solid var(--border-soft);
 }
 .why.why-b .wb-icon {
@@ -834,7 +842,7 @@ body.accent-gradient .cta.cta-c {
   padding: 22px 26px; text-align: center;
 }
 .why.why-b .wb-insight-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 17px; font-weight: 500; color: #fff; line-height: 1.9;
 }
 .why.why-b .wb-insight-text em { font-style: normal; color: var(--brand-accent); font-weight: 700; }
@@ -848,7 +856,7 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   bottom: -60px; left: -40px;
   width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(107,79,160,0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-mid) 20%, transparent) 0%, transparent 65%);
   pointer-events: none;
 }
 .why.why-c .tag-title { color: #fff; }
@@ -857,7 +865,7 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   left: 16px; top: 12px; bottom: 12px;
   width: 1px;
-  background: linear-gradient(180deg, var(--brand-accent) 0%, rgba(0,122,255,0.1) 100%);
+  background: linear-gradient(180deg, var(--brand-accent) 0%, color-mix(in srgb, var(--brand-accent) 10%, transparent) 100%);
 }
 .why.why-c .wc-item {
   position: relative; margin-bottom: 18px;
@@ -881,12 +889,12 @@ body.accent-gradient .cta.cta-c {
   font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.8;
 }
 .why.why-c .wc-conclusion {
-  background: rgba(0,122,255,0.15);
-  border: 1px solid rgba(0,122,255,0.35);
+  background: color-mix(in srgb, var(--brand-accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand-accent) 35%, transparent);
   border-radius: 8px; padding: 22px 26px; text-align: center;
 }
 .why.why-c .wc-conclusion-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 17px; color: #fff; line-height: 1.9;
 }
 .why.why-c .wc-conclusion-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
@@ -917,7 +925,7 @@ body.accent-gradient .cta.cta-c {
   position: relative; margin-bottom: 24px;
   padding: 20px 24px;
   background: var(--bg-white); border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(46,21,102,0.06);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--brand-primary) 6%, transparent);
 }
 .step:last-child { margin-bottom: 0; }
 .step-dot {
@@ -935,7 +943,7 @@ body.accent-gradient .cta.cta-c {
   margin-top: 32px; text-align: center; padding: 22px 20px;
 }
 .solution.solution-a .closing-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 16.5px; color: var(--brand-primary); line-height: 2;
 }
 .solution.solution-a .closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
@@ -957,7 +965,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-tint); border-radius: 8px;
 }
 .solution.solution-b .closing-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 16.5px; color: var(--brand-primary); line-height: 2;
 }
 .solution.solution-b .closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
@@ -976,7 +984,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-white); border-radius: 10px;
   padding: 22px 14px;
   border: 1px solid var(--border-soft);
-  box-shadow: 0 1px 4px rgba(46,21,102,0.04);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--brand-primary) 4%, transparent);
 }
 .solution.solution-c .sc-usp-icon {
   font-size: 24px; margin-bottom: 10px;
@@ -992,7 +1000,7 @@ body.accent-gradient .cta.cta-c {
   text-align: center; padding: 22px 20px;
 }
 .solution.solution-c .closing-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 16.5px; color: var(--brand-primary); line-height: 2;
 }
 .solution.solution-c .closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
@@ -1037,7 +1045,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 24px;
 }
 .solution.solution-d .sd-banner-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 17px; font-weight: 500;
   color: #fff; line-height: 1.9;
 }
@@ -1048,7 +1056,7 @@ body.accent-gradient .cta.cta-c {
   text-align: center; padding: 16px 20px;
 }
 .solution.solution-d .closing-text {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 16.5px; color: var(--brand-primary); line-height: 2;
 }
 .solution.solution-d .closing-text em { font-style: normal; color: var(--brand-accent); font-weight: 600; }
@@ -1078,7 +1086,7 @@ body.accent-gradient .cta.cta-c {
   width: 1px; background: var(--border-soft);
 }
 .stat-item .stat-value {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 34px; font-weight: 700;
   color: var(--brand-primary); margin-bottom: 2px;
 }
@@ -1096,7 +1104,7 @@ body.accent-gradient .cta.cta-c {
   border-left: 3px solid var(--brand-accent);
 }
 .proof.proof-b .pb-qa-q {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 16px; font-weight: 600;
   color: var(--brand-primary); margin-bottom: 12px;
 }
@@ -1114,7 +1122,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-white); border-radius: 10px;
   padding: 24px 28px; margin-bottom: 14px;
   border: 1px solid var(--border-soft);
-  box-shadow: 0 1px 4px rgba(46,21,102,0.05);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--brand-primary) 5%, transparent);
 }
 .proof.proof-c .pc-stars {
   font-size: 15px; color: #F4B400;
@@ -1125,7 +1133,7 @@ body.accent-gradient .cta.cta-c {
 }
 .proof.proof-c .pc-tag {
   font-size: 11px; padding: 4px 12px;
-  background: rgba(46,21,102,0.06);
+  background: color-mix(in srgb, var(--brand-primary) 6%, transparent);
   color: var(--brand-primary); border-radius: 20px;
   font-weight: 500;
 }
@@ -1164,14 +1172,14 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   top: -50px; left: -30px;
   width: 280px; height: 280px;
-  background: radial-gradient(circle, rgba(0,122,255,0.1) 0%, transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-accent) 10%, transparent) 0%, transparent 65%);
   pointer-events: none;
 }
 .cta.cta-a::after {
   content: ''; position: absolute;
   bottom: -70px; right: -50px;
   width: 320px; height: 320px;
-  background: radial-gradient(circle, rgba(107,79,160,0.15) 0%, transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-mid) 15%, transparent) 0%, transparent 65%);
   pointer-events: none;
 }
 .cta.cta-a .cta-label {
@@ -1180,7 +1188,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 32px; position: relative; z-index: 1;
 }
 .cta.cta-a .cta-main {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 30px; font-weight: 500;
   color: #fff; line-height: 1.7; letter-spacing: -0.5px;
   position: relative; z-index: 1; margin-bottom: 6px;
@@ -1201,12 +1209,12 @@ body.accent-gradient .cta.cta-c {
 .cta.cta-a .cta-button {
   display: inline-block; margin-top: 26px;
   padding: 12px 34px;
-  border: 1px solid rgba(0,122,255,0.5); border-radius: 2px;
+  border: 1px solid color-mix(in srgb, var(--brand-accent) 50%, transparent); border-radius: 2px;
   color: var(--brand-accent); font-size: 13px; font-weight: 600;
   letter-spacing: 1.5px; position: relative; z-index: 1;
 }
 .cta.cta-a .goodbye {
-  font-family: 'Noto Serif CJK KR', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 19px; font-weight: 300; font-style: italic;
   color: rgba(255,255,255,0.12); margin-top: 28px;
   letter-spacing: 4px; position: relative; z-index: 1;
@@ -1224,7 +1232,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 24px;
 }
 .cta.cta-b .cta-main {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 28px; font-weight: 600;
   color: var(--brand-primary); line-height: 1.75; letter-spacing: -0.5px;
   margin-bottom: 10px;
@@ -1248,7 +1256,7 @@ body.accent-gradient .cta.cta-c {
 
 /* ── cta-c : 다크 그라디언트 배경 + 대형 Serif 타이포 + 하단 미니멀 CTA ── */
 .cta.cta-c {
-  background: linear-gradient(150deg, #1A0A3D 0%, #2E1566 45%, #1A3566 100%);
+  background: linear-gradient(150deg, var(--bg-dark-deep) 0%, var(--bg-dark) 45%, var(--bg-dark-blend) 100%);
   padding: 70px 60px;
   justify-content: space-between;
 }
@@ -1256,11 +1264,11 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 500px; height: 300px;
-  background: radial-gradient(ellipse, rgba(0,122,255,0.08) 0%, transparent 65%);
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--brand-accent) 8%, transparent) 0%, transparent 65%);
   pointer-events: none;
 }
 .cta.cta-c .cc-main {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 36px; font-weight: 400;
   color: #fff; line-height: 1.7; letter-spacing: -1px;
   position: relative; z-index: 1;
@@ -1279,7 +1287,7 @@ body.accent-gradient .cta.cta-c {
 }
 .cta.cta-c .cc-button {
   padding: 10px 28px;
-  border: 1px solid rgba(0,122,255,0.6); border-radius: 2px;
+  border: 1px solid color-mix(in srgb, var(--brand-accent) 60%, transparent); border-radius: 2px;
   color: var(--brand-accent); font-size: 12px; font-weight: 600;
   letter-spacing: 1.5px;
 }
@@ -1302,7 +1310,7 @@ body.accent-gradient .cta.cta-c {
 .cta.cta-d .cd-left::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 20% 80%, rgba(107,79,160,0.2) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 20% 80%, color-mix(in srgb, var(--brand-mid) 20%, transparent) 0%, transparent 60%);
   pointer-events: none;
 }
 .cta.cta-d .cd-label {
@@ -1311,7 +1319,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 24px; position: relative; z-index: 1;
 }
 .cta.cta-d .cd-headline {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 26px; font-weight: 500;
   color: #fff; line-height: 1.8; letter-spacing: -0.5px;
   position: relative; z-index: 1; margin-bottom: 12px;
@@ -1333,7 +1341,7 @@ body.accent-gradient .cta.cta-c {
   text-align: center; margin-bottom: 28px;
 }
 .cta.cta-d .cd-brand-name {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 20px; font-weight: 600;
   color: var(--brand-primary); margin-bottom: 20px;
 }
@@ -1359,7 +1367,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-white);
   border-radius: 16px;
   border: 1px solid var(--border-soft);
-  box-shadow: 0 4px 24px rgba(46,21,102,0.08);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--brand-primary) 8%, transparent);
   padding: 48px 44px;
   max-width: 520px;
   width: 100%;
@@ -1376,7 +1384,7 @@ body.accent-gradient .cta.cta-c {
   margin: 0 auto 20px;
 }
 .cta.cta-e .ce-headline {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 24px; font-weight: 600;
   color: var(--brand-primary); line-height: 1.8;
   margin-bottom: 8px;
@@ -1415,14 +1423,14 @@ body.accent-gradient .cta.cta-c {
   content: ''; position: absolute;
   top: -60px; right: -40px;
   width: 240px; height: 240px;
-  background: radial-gradient(circle, rgba(46,21,102,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand-primary) 4%, transparent) 0%, transparent 70%);
   pointer-events: none;
 }
 .disclaimer-section.disclaimer-a .disc-header {
   text-align: center; margin-bottom: 28px;
 }
 .disclaimer-section.disclaimer-a .disc-title {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 22px; font-weight: 600;
   color: var(--brand-primary); letter-spacing: -0.3px; margin-bottom: 8px;
 }
@@ -1439,7 +1447,7 @@ body.accent-gradient .cta.cta-c {
 .disc-block-accent {
   background: var(--bg-white); border-radius: 8px;
   padding: 24px 28px; margin-bottom: 12px;
-  border: 1px solid rgba(46,21,102,0.15);
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 15%, transparent);
   border-left: 3px solid var(--brand-primary);
   position: relative; z-index: 1;
 }
@@ -1464,7 +1472,7 @@ body.accent-gradient .cta.cta-c {
   margin-bottom: 32px;
 }
 .disclaimer-section.disclaimer-b .db-title {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 20px; font-weight: 600;
   color: var(--brand-primary); margin-bottom: 6px;
 }
@@ -1480,7 +1488,7 @@ body.accent-gradient .cta.cta-c {
   border-bottom: 1px solid var(--border-soft);
 }
 .disclaimer-section.disclaimer-b .db-num {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 24px; font-weight: 700;
   color: var(--brand-primary); opacity: 0.15;
   line-height: 1; flex-shrink: 0; width: 32px; padding-top: 2px;
@@ -1513,7 +1521,7 @@ body.accent-gradient .cta.cta-c {
   text-align: center; margin-bottom: 28px;
 }
 .disclaimer-section.disclaimer-c .dc-title {
-  font-family: 'Noto Serif CJK KR', serif;
+  font-family: var(--font-display);
   font-size: 20px; font-weight: 600;
   color: var(--brand-primary); margin-bottom: 6px;
 }
@@ -1525,7 +1533,7 @@ body.accent-gradient .cta.cta-c {
   background: var(--bg-white); border-radius: 12px;
   border: 1px solid var(--border-soft);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(46,21,102,0.05);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--brand-primary) 5%, transparent);
 }
 .disclaimer-section.disclaimer-c .dc-item {
   padding: 22px 28px;
@@ -1557,7 +1565,7 @@ body.accent-gradient .cta.cta-c {
 
 /* ── Editorial: Serif 주도, 날카로운 코너, 큰 코너장식, 그림자 없음 ── */
 body.theme-editorial {
-  --theme-heading-font: 'Noto Serif CJK KR', Georgia, serif;
+  --theme-heading-font: var(--font-display);
   --theme-heading-weight: 600;
   --theme-letter-spacing: 0px;
   --theme-line-height: 2.2;
@@ -1575,7 +1583,7 @@ body.theme-editorial .hook.hook-b .quote-text {
 
 /* ── Warm: 라운드 코너, 부드러운 그림자, 보더 제거, 코너장식 숨김 ── */
 body.theme-warm {
-  --theme-heading-font: 'Noto Serif CJK KR', serif;
+  --theme-heading-font: var(--font-display);
   --theme-heading-weight: 500;
   --theme-letter-spacing: -0.3px;
   --theme-line-height: 2.15;
@@ -1603,7 +1611,7 @@ body.theme-warm .review {
 
 /* ── Clean: Sans 주도, 타이트 line-height, 작은 코너, 패딩 축소 ── */
 body.theme-clean {
-  --theme-heading-font: 'Noto Sans CJK KR', sans-serif;
+  --theme-heading-font: var(--font-body);
   --theme-heading-weight: 700;
   --theme-letter-spacing: -0.5px;
   --theme-line-height: 1.9;
@@ -1614,14 +1622,14 @@ body.theme-clean {
 }
 body.theme-clean .hook.hook-a .quote-text,
 body.theme-clean .hook.hook-c .quote-text {
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
   font-weight: 600;
 }
 body.theme-clean .hook.hook-b .quote-text {
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
 }
 body.theme-clean .review-qm {
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
 }
 body.theme-clean .section-tag { margin-bottom: 22px; }
 body.theme-clean .hook { min-height: 480px; }
@@ -1629,7 +1637,7 @@ body.theme-clean .hook.hook-a { padding: 55px 50px 50px; }
 
 /* ── Bold: Sans 900 weight, 큰 폰트, 두꺼운 라인, 강한 그림자 ── */
 body.theme-bold {
-  --theme-heading-font: 'Noto Sans CJK KR', sans-serif;
+  --theme-heading-font: var(--font-body);
   --theme-heading-weight: 900;
   --theme-letter-spacing: -1px;
   --theme-line-height: 1.95;
@@ -1645,15 +1653,15 @@ body.theme-bold .tag-line {
   width: 32px; height: 3px;
 }
 body.theme-bold .hook.hook-a .quote-text {
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
   font-size: 26px; font-weight: 800;
 }
 body.theme-bold .hook.hook-b .quote-text {
   font-size: 34px; font-weight: 800;
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
 }
 body.theme-bold .hook.hook-c .quote-text {
-  font-family: 'Noto Sans CJK KR', sans-serif;
+  font-family: var(--font-body);
   font-size: 24px; font-weight: 800;
 }
 body.theme-bold .hook.hook-b .hb-divider {

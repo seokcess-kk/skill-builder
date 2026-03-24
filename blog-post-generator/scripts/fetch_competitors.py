@@ -171,7 +171,7 @@ def fetch_blog_content(url):
                 return result
         except requests.RequestException as e:
             print(f"\n    [WARN] 모바일 크롤링 실패 ({blog_id}/{log_no}): {e}")
-        except Exception as e:
+        except (AttributeError, TypeError, ValueError, KeyError) as e:
             print(f"\n    [WARN] 파싱 실패 ({blog_id}/{log_no}): {e}")
 
     # 일반 URL (티스토리 등 다른 블로그)

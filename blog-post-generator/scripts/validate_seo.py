@@ -19,7 +19,7 @@ import argparse
 from utils import count_chars
 
 
-def validate(content_path, keyword, analysis_path=None):
+def validate(content_path, keyword, analysis_path=None, skip_images=False, quiet=False):
     with open(content_path, "r", encoding="utf-8") as f:
         raw = f.read()
 
@@ -29,18 +29,20 @@ def validate(content_path, keyword, analysis_path=None):
 
     char_count = count_chars(plain_no_md)
 
-    # 키워드 분석
-    kw_count = plain_no_md.count(keyword)
+    # 키워드 분석 (대소문자 무시)
+    kw_count = plain_no_md.lower().count(keyword.lower())
     kw_char_len = count_chars(keyword)
     kw_density = round(kw_char_len * kw_count / char_count * 100, 2) if char_count else 0
 
-    # 첫 키워드 위치
-    first_idx = plain_no_md.find(keyword)
+    # 첫 키워드 위치 (대소문자 무시)
+    first_idx = plain_no_md.lower().find(keyword.lower())
     first_pos = count_chars(plain_no_md[:first_idx]) if first_idx >= 0 else None
 
     # 소제목
     headings = re.findall(r'^##\s+(.+)$', raw, re.MULTILINE)
-    kw_in_headings = sum(1 for h in headings if keyword in h or keyword.replace(' ', '') in h)
+    kw_lower = keyword.lower()
+    kw_nospace = keyword.replace(' ', '').lower()
+    kw_in_headings = sum(1 for h in headings if kw_lower in h.lower() or kw_nospace in h.lower())
 
     # 롱테일 키워드 (키워드를 분리한 부분 매칭)
     # 예: "웨스턴돔다이어트" → "웨스턴돔", "다이어트"
@@ -132,21 +134,22 @@ def validate(content_path, keyword, analysis_path=None):
     else:
         warnings.append(f"소제목 내 키워드: {kw_in_headings}개 (2개 이상 권장)")
 
-    # 6. 이미지 수
-    target_images = 7
-    if competitor:
-        target_images = max(int(competitor.get("avg_image_count", 7)), 5)
+    # 6. 이미지 수 (skip_images=True일 때 건너뜀 — Phase 2 삽입 전 검증용)
+    if not skip_images:
+        target_images = 7
+        if competitor:
+            target_images = max(int(competitor.get("avg_image_count", 7)), 5)
 
-    if image_count < 5:
-        issues.append(f"이미지 부족: {image_count}장 (최소 5장 필요)")
-    elif image_count < target_images:
-        warnings.append(f"이미지 보강 권장: {image_count}장 (상위글 평균 {target_images}장)")
-    else:
-        passed.append(f"이미지: {image_count}장 (기준: {target_images}장)")
+        if image_count < 5:
+            issues.append(f"이미지 부족: {image_count}장 (최소 5장 필요)")
+        elif image_count < target_images:
+            warnings.append(f"이미지 보강 권장: {image_count}장 (상위글 평균 {target_images}장)")
+        else:
+            passed.append(f"이미지: {image_count}장 (기준: {target_images}장)")
 
     # 7. 마지막 문단 키워드
     last_para = paragraphs[-1] if paragraphs else ""
-    if keyword not in last_para:
+    if kw_lower not in last_para.lower():
         warnings.append("마무리 문단에 키워드 없음 (마지막 문단에 1회 삽입 권장)")
     else:
         passed.append("마무리 키워드: 포함")
@@ -156,48 +159,50 @@ def validate(content_path, keyword, analysis_path=None):
     if long_paras:
         warnings.append(f"긴 문단 {len(long_paras)}개 (200자 초과 — 분리 권장)")
 
-    # === 출력 ===
-    print("=" * 55)
-    print(f"  SEO 검증: '{keyword}'")
-    print("=" * 55)
-
-    print(f"\n📊 기본 지표")
-    print(f"  글자수: {char_count}자")
-    print(f"  키워드 출현: {kw_count}회")
-    print(f"  키워드 밀도: {kw_density}%")
-    print(f"  첫 키워드: {first_pos}자 위치")
-    print(f"  소제목: {len(headings)}개 (키워드 포함 {kw_in_headings}개)")
-    print(f"  이미지 마커: {image_count}개")
-    print(f"  평균 문단 길이: {avg_para_len}자")
-
-    if competitor:
-        print(f"\n📈 상위글 평균")
-        print(f"  글자수: {competitor.get('avg_char_count', 'N/A')}자")
-        print(f"  소제목: {competitor.get('avg_heading_count', 'N/A')}개")
-        print(f"  이미지: {competitor.get('avg_image_count', 'N/A')}장")
-
+    # === 등급 산출 ===
     score = len(passed)
     total = len(passed) + len(issues) + len(warnings)
-
-    if issues:
-        print(f"\n❌ 수정 필요 ({len(issues)}건)")
-        for item in issues:
-            print(f"  - {item}")
-
-    if warnings:
-        print(f"\n⚠️ 개선 권장 ({len(warnings)}건)")
-        for item in warnings:
-            print(f"  - {item}")
-
-    if passed:
-        print(f"\n✅ 통과 ({len(passed)}건)")
-        for item in passed:
-            print(f"  - {item}")
-
-    print(f"\n{'=' * 55}")
     grade = "A" if not issues and not warnings else "B" if not issues else "C" if len(issues) <= 2 else "D"
-    print(f"  종합 등급: {grade} ({score}/{total} 통과)")
-    print(f"{'=' * 55}")
+
+    # === 출력 (quiet=True이면 생략 — 내부 검증용) ===
+    if not quiet:
+        print("=" * 55)
+        print(f"  SEO 검증: '{keyword}'")
+        print("=" * 55)
+
+        print(f"\n📊 기본 지표")
+        print(f"  글자수: {char_count}자")
+        print(f"  키워드 출현: {kw_count}회")
+        print(f"  키워드 밀도: {kw_density}%")
+        print(f"  첫 키워드: {first_pos}자 위치")
+        print(f"  소제목: {len(headings)}개 (키워드 포함 {kw_in_headings}개)")
+        print(f"  이미지 마커: {image_count}개")
+        print(f"  평균 문단 길이: {avg_para_len}자")
+
+        if competitor:
+            print(f"\n📈 상위글 평균")
+            print(f"  글자수: {competitor.get('avg_char_count', 'N/A')}자")
+            print(f"  소제목: {competitor.get('avg_heading_count', 'N/A')}개")
+            print(f"  이미지: {competitor.get('avg_image_count', 'N/A')}장")
+
+        if issues:
+            print(f"\n❌ 수정 필요 ({len(issues)}건)")
+            for item in issues:
+                print(f"  - {item}")
+
+        if warnings:
+            print(f"\n⚠️ 개선 권장 ({len(warnings)}건)")
+            for item in warnings:
+                print(f"  - {item}")
+
+        if passed:
+            print(f"\n✅ 통과 ({len(passed)}건)")
+            for item in passed:
+                print(f"  - {item}")
+
+        print(f"\n{'=' * 55}")
+        print(f"  종합 등급: {grade} ({score}/{total} 통과)")
+        print(f"{'=' * 55}")
 
     # JSON 결과 저장
     result = {
@@ -215,11 +220,12 @@ def validate(content_path, keyword, analysis_path=None):
         "passed": passed,
     }
 
-    result_path = os.path.join(os.path.dirname(content_path), "seo-validation.json")
-    with open(result_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
+    if not quiet:
+        result_path = os.path.join(os.path.dirname(content_path), "seo-validation.json")
+        with open(result_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        print(f"\n결과 저장: {result_path}")
 
-    print(f"\n결과 저장: {result_path}")
     return result
 
 
@@ -228,9 +234,10 @@ def main():
     parser.add_argument("--content", required=True, help="SEO 콘텐츠 마크다운 파일")
     parser.add_argument("--keyword", required=True, help="타겟 키워드")
     parser.add_argument("--analysis", help="경쟁사 분석 JSON (상위글 평균 비교용)")
+    parser.add_argument("--skip-images", action="store_true", help="이미지 수 검증 건너뛰기 (Phase 2 전 검증용)")
     args = parser.parse_args()
 
-    validate(args.content, args.keyword, args.analysis)
+    validate(args.content, args.keyword, args.analysis, skip_images=args.skip_images)
 
 
 if __name__ == "__main__":

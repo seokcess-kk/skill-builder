@@ -61,3 +61,51 @@ def detect_industry(keyword):
 def detect_medical(keyword):
     """의료 업종 키워드 감지 (detect_industry의 편의 래퍼)"""
     return detect_industry(keyword) == "medical"
+
+
+# 폰트 페어링 → 실제 폰트명 매핑 (generate_brand_html.py, compose_final.py 공용)
+FONT_PAIRINGS = {
+    "serif-classic": ("'Noto Serif KR', serif", "'Noto Sans KR', sans-serif"),
+    "modern-geo": ("'Pretendard', sans-serif", "'Pretendard', sans-serif"),
+    "warm-mixed": ("'MaruBuri', serif", "'Pretendard', sans-serif"),
+    "editorial-kr": ("'KoPub Batang', serif", "'KoPub Dotum', sans-serif"),
+    "bold-impact": ("'SUIT', sans-serif", "'SUIT', sans-serif"),
+}
+
+# 폰트 페어링 → CDN/Google Fonts URL 매핑
+FONT_URLS = {
+    "serif-classic": [
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap",
+    ],
+    "modern-geo": [
+        "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css",
+    ],
+    "warm-mixed": [
+        "https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri/MaruBuri.css",
+        "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css",
+    ],
+    "editorial-kr": [
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap",
+    ],
+    "bold-impact": [
+        "https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css",
+    ],
+}
+
+
+def font_link_tags(font_pairing):
+    """폰트 페어링에 맞는 <link> 태그 생성"""
+    urls = FONT_URLS.get(font_pairing, FONT_URLS["serif-classic"])
+    return "\n".join(f'<link href="{url}" rel="stylesheet">' for url in urls)
+
+
+def lighten_hex(hex_color, factor=0.85):
+    """HEX 색상을 밝게 변환 (factor: 0=원본, 1=white)"""
+    h = hex_color.lstrip('#')
+    if len(h) != 6:
+        return "#eeeeee"
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    r = int(r + (255 - r) * factor)
+    g = int(g + (255 - g) * factor)
+    b = int(b + (255 - b) * factor)
+    return f"#{r:02x}{g:02x}{b:02x}"
