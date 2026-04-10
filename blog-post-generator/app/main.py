@@ -21,6 +21,15 @@ ROOT = Path(__file__).parent.parent
 SCRIPTS = ROOT / "scripts"
 OUTPUT = ROOT / "output"
 
+# .env 파일에서 환경변수 로드
+_env_file = ROOT / ".env"
+if _env_file.exists():
+    for line in _env_file.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
+
 
 # ─── Page Config ───
 st.set_page_config(
@@ -759,9 +768,28 @@ else:
                 seo_meta = json.loads(seo_meta_path.read_text(encoding="utf-8"))
                 seo_title = seo_meta.get("title", "")
                 seo_tags = seo_meta.get("tags", [])
+                title_candidates = seo_meta.get("title_candidates", [])
 
-                if seo_title:
-                    st.markdown(f"**제목**")
+                if title_candidates and len(title_candidates) > 1:
+                    st.markdown("**제목 선택**")
+                    options = [f"{i+1}. {t}" for i, t in enumerate(title_candidates)]
+                    selected = st.radio(
+                        "제목을 선택하세요",
+                        options=options,
+                        index=0,
+                        label_visibility="collapsed",
+                        key="title_select",
+                    )
+                    selected_idx = options.index(selected)
+                    chosen_title = title_candidates[selected_idx]
+                    if chosen_title != seo_meta.get("title", ""):
+                        seo_meta["title"] = chosen_title
+                        seo_meta_path.write_text(
+                            json.dumps(seo_meta, ensure_ascii=False, indent=2),
+                            encoding="utf-8",
+                        )
+                elif seo_title:
+                    st.markdown("**제목**")
                     st.code(seo_title, language=None)
 
                 if seo_tags:
