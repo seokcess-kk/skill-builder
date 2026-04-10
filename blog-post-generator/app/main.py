@@ -722,6 +722,15 @@ else:
                     c_args += ["--branded-dir", str(branded_dir)]
                 if images_dir.exists():
                     c_args += ["--seo-images-dir", str(images_dir)]
+                # 제목 전달
+                seo_meta_path = content_dir / "seo-meta.json"
+                if seo_meta_path.exists():
+                    try:
+                        _title = json.loads(seo_meta_path.read_text(encoding="utf-8")).get("title", "")
+                        if _title:
+                            c_args += ["--title", _title]
+                    except (json.JSONDecodeError, OSError):
+                        pass
 
                 result = run_script("compose_final.py", c_args)
                 if result.returncode != 0:

@@ -241,7 +241,7 @@ strong {{ color: {primary_color}; }}
     return output_path
 
 
-def compose_post(branded_dir, seo_content_path, seo_images_dir, output_dir, brand_name, keyword):
+def compose_post(branded_dir, seo_content_path, seo_images_dir, output_dir, brand_name, keyword, title=""):
     """브랜드 이미지 + SEO 텍스트 + SEO 이미지를 최종 게시물로 조합"""
     os.makedirs(output_dir, exist_ok=True)
 
@@ -330,11 +330,13 @@ def compose_post(branded_dir, seo_content_path, seo_images_dir, output_dir, bran
         parts.append(disclaimer_html)
 
     # 3. 최종 HTML 조합
+    title_tag = f"<title>{html_lib.escape(title)}</title>" if title else ""
     final_html = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{title_tag}
 {_font_links}
 <style>
 body {{
@@ -392,7 +394,7 @@ def main():
     parser.add_argument("--brand-name", required=True, help="브랜드명")
     parser.add_argument("--keyword", required=True, help="타겟 키워드")
     parser.add_argument("--seo-only", action="store_true", help="SEO 콘텐츠만 단독 HTML로 생성")
-    parser.add_argument("--title", default="", help="SEO HTML 제목 (--seo-only용)")
+    parser.add_argument("--title", default="", help="HTML 제목")
     parser.add_argument("--primary-color", default="#333333", help="Primary 색상 (--seo-only용)")
     parser.add_argument("--font-pairing", default="serif-classic", help="폰트 페어링 (--seo-only용)")
     args = parser.parse_args()
@@ -406,7 +408,7 @@ def main():
     else:
         compose_post(
             args.branded_dir, args.seo_content, args.seo_images_dir,
-            args.output_dir, args.brand_name, args.keyword,
+            args.output_dir, args.brand_name, args.keyword, title=args.title,
         )
 
 
