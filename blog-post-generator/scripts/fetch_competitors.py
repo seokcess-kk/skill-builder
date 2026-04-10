@@ -26,6 +26,8 @@ from urllib.parse import urlparse, parse_qs
 import requests
 from bs4 import BeautifulSoup
 
+from utils import count_chars
+
 
 SEARCH_API_URL = "https://openapi.naver.com/v1/search/blog.json"
 HEADERS_MOBILE = {
@@ -163,7 +165,7 @@ def fetch_blog_content(url):
             resp = requests.get(mobile_url, headers=HEADERS_MOBILE, timeout=15, allow_redirects=True)
             resp.raise_for_status()
             result = parse_blog_html(resp.text, blog_id, log_no)
-            if len(re.sub(r'\s', '', result.get("text", ""))) > 50:
+            if count_chars(result.get("text", "")) > 50:
                 # PC URL에서 태그 별도 크롤링 (모바일 SSR에는 태그 미포함)
                 tags = fetch_blog_tags(blog_id, log_no)
                 if tags:
@@ -216,7 +218,7 @@ def parse_blog_html(html, blog_id, log_no):
     full_text = "\n\n".join(texts)
 
     # fallback: se-text-paragraph가 없으면 일반 추출
-    if len(re.sub(r'\s', '', full_text)) < 100:
+    if count_chars(full_text) < 100:
         full_text = container.get_text(separator="\n", strip=True)
 
     # 2. 소제목 추출
@@ -386,7 +388,7 @@ def main():
             print(f"FAIL ({content['error'][:40]})")
             continue
 
-        text_len = len(re.sub(r'\s', '', content.get("text", "")))
+        text_len = count_chars(content.get("text", ""))
         img_count = content.get("image_count", 0)
         print(f"OK ({text_len}자, 이미지 {img_count}개)")
 
@@ -421,7 +423,7 @@ def main():
     print(f"저장: {output_path}")
 
     if pages:
-        avg_chars = sum(len(re.sub(r'\s', '', p["text"])) for p in pages) // len(pages)
+        avg_chars = sum(count_chars(p["text"]) for p in pages) // len(pages)
         avg_imgs = sum(p["image_count"] for p in pages) // len(pages)
         print(f"평균 글자수: {avg_chars}자, 평균 이미지: {avg_imgs}개")
 

@@ -722,7 +722,7 @@ else:
 
                 result = run_script("compose_final.py", c_args)
                 if result.returncode != 0:
-                    st.error("Step 7 실패: 최종 HTML 생성")
+                    st.error("Step 6 실패: 최종 HTML 생성")
                     st.code(result.stderr[-500:] if result.stderr else "Unknown error")
                     error_occurred = True
 
@@ -913,7 +913,7 @@ else:
         st.caption("개별 Step을 수동으로 실행할 수 있습니다.")
 
         # Step 1
-        st.markdown("#### Step 1. 상위글 크롤링 + 분석")
+        st.markdown("#### Step 1. 상위글 분석")
         c1, c2 = st.columns(2)
         with c1:
             if st.button("🔍 상위글 수집", use_container_width=True, key="manual_fetch"):
@@ -939,7 +939,7 @@ else:
         st.divider()
 
         # Step 2
-        st.markdown("#### Step 2. SEO 원고 생성")
+        st.markdown("#### Step 2. SEO 원고 작성")
         if st.button("✨ AI 원고 작성", use_container_width=True, key="manual_seo",
                       disabled=not analysis_json.exists()):
             content_dir.mkdir(parents=True, exist_ok=True)
@@ -956,8 +956,8 @@ else:
 
         st.divider()
 
-        # Step 3: 브랜드 이미지
-        st.markdown("#### Step 3. 브랜드 섹션 이미지")
+        # Step 5: 브랜드 이미지
+        st.markdown("#### Step 5. 브랜드 섹션 이미지")
         c5, c6 = st.columns(2)
         with c5:
             if st.button("✨ 브랜드 HTML 생성", use_container_width=True, key="manual_brand_html"):
@@ -997,8 +997,8 @@ else:
 
         st.divider()
 
-        # Step 4
-        st.markdown("#### Step 4. SEO 이미지 생성")
+        # Step 3
+        st.markdown("#### Step 3. SEO 이미지")
         c3a, c3b, c4 = st.columns(3)
         with c3a:
             if st.button("📍 이미지 배치", use_container_width=True, key="manual_markers",
@@ -1036,8 +1036,8 @@ else:
 
         st.divider()
 
-        # Step 5
-        st.markdown("#### Step 5. SEO 최종 검증")
+        # Step 4
+        st.markdown("#### Step 4. SEO 최종 검증")
         if st.button("✅ SEO 검증", use_container_width=True, key="manual_validate",
                       disabled=not seo_content_path.exists()):
             args = ["--content", str(seo_content_path), "--keyword", keyword]

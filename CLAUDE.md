@@ -30,14 +30,14 @@ skill-builder/
     ├── scripts/                           ← 실행 스크립트 (11개)
     │   ├── utils.py                       ← 공유 유틸리티
     │   ├── fetch_competitors.py           ← Step 1: 네이버 상위글 크롤링
-    │   ├── analyze_competitors.py         ← Step 1: 패턴 분석 (텍스트만, 이미지 유형 분석 제거)
-    │   ├── generate_seo_content.py        ← Step 2: SEO 원고 생성 (Claude CLI, 텍스트만)
-    │   ├── generate_brand_html.py         ← Step 3: 브랜드 HTML 생성 (Claude CLI, 2-phase)
-    │   ├── render_chrome.py               ← Step 3: HTML→PNG (Selenium)
-    │   ├── validate_seo.py                ← Step 2 내부 검증 + Step 5 최종 검증
-    │   ├── insert_image_markers.py        ← Step 4: 원고 기반 이미지 마커 삽입 (Claude CLI)
-    │   ├── build_prompts.py               ← Step 4: 마커 → prompts.json (no-text 규칙 적용)
-    │   ├── generate_images.py             ← Step 4: Gemini 이미지 생성
+    │   ├── analyze_competitors.py         ← Step 1: 패턴 분석 + 콘텐츠 아웃라인 추출
+    │   ├── generate_seo_content.py        ← Step 2: SEO 원고 생성 (Claude CLI, B등급 보장)
+    │   ├── validate_seo.py                ← Step 2 내부 검증 + Step 4 최종 검증
+    │   ├── insert_image_markers.py        ← Step 3: 원고 기반 이미지 마커 삽입 (Claude CLI)
+    │   ├── build_prompts.py               ← Step 3: 마커 → prompts.json (no-text 규칙 적용)
+    │   ├── generate_images.py             ← Step 3: Gemini 이미지 생성
+    │   ├── generate_brand_html.py         ← Step 5: 브랜드 HTML 생성 (Claude CLI, 2-phase)
+    │   ├── render_chrome.py               ← Step 5: HTML→PNG (Selenium)
     │   └── compose_final.py               ← Step 6: 최종 HTML 조합
     │
     └── skills/                            ← 하위 스킬

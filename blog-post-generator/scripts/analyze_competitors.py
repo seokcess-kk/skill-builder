@@ -62,9 +62,9 @@ def split_paragraphs(text):
 
 def detect_tone(text):
     """문체 감지 (간이)"""
-    formal_endings = len(re.findall(r'(?:습니다|입니다|됩니다|있습니다|었습니다|겠습니다)[.!?\s]', text))
-    casual_endings = len(re.findall(r'(?:해요|에요|이에요|거에요|예요|나요|세요|죠)[.!?\s]', text))
-    banmal_endings = len(re.findall(r'(?:한다|된다|있다|없다|이다|같다|보자|하자)[.!?\s]', text))
+    formal_endings = len(re.findall(r'(?:습니다|입니다|됩니다|있습니다|었습니다|겠습니다)(?:[.!?\s]|$)', text))
+    casual_endings = len(re.findall(r'(?:해요|에요|이에요|거에요|예요|나요|세요|죠)(?:[.!?\s]|$)', text))
+    banmal_endings = len(re.findall(r'(?:한다|된다|있다|없다|이다|같다|보자|하자)(?:[.!?\s]|$)', text))
 
     total = formal_endings + casual_endings + banmal_endings
     if total == 0:
@@ -405,7 +405,8 @@ def generate_summary(averages, keyword):
         lines.append("### 경쟁사별 콘텐츠 구조")
         for i, outline in enumerate(outlines[:5], 1):
             lines.append(f"")
-            lines.append(f"**글 {i}: {outline['title'][:50]}**")
+            title_display = (outline['title'][:50] + '...') if len(outline['title']) > 50 else outline['title']
+            lines.append(f"**글 {i}: {title_display}**")
             for sec in outline["sections"][:5]:
                 heading = sec["heading"]
                 summary = sec["summary"][:120]

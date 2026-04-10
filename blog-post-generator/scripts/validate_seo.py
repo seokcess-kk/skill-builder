@@ -148,6 +148,8 @@ def validate(content_path, keyword, analysis_path=None, skip_images=False, quiet
             passed.append(f"이미지: {image_count}장 (기준: {target_images}장)")
 
     # 7. 마지막 문단 키워드
+    if not paragraphs:
+        warnings.append("문단이 없습니다")
     last_para = paragraphs[-1] if paragraphs else ""
     if kw_lower not in last_para.lower():
         warnings.append("마무리 문단에 키워드 없음 (마지막 문단에 1회 삽입 권장)")

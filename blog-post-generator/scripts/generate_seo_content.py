@@ -510,10 +510,15 @@ def _parse_title_tags_body(content):
             meta_end = i + 1
             break
 
+        # 소제목(## )이 나오면 본문 시작
+        if stripped.startswith("## "):
+            meta_end = i
+            break
+
         # 비공백 행이 메타데이터 패턴이 아니면 본문 시작
         if stripped:
-            # 아직 제목/태그를 하나도 못 찾았으면 좀 더 탐색 (최대 10행)
-            if not titles and not tags and i < 10:
+            # 아직 제목/태그를 하나도 못 찾았으면 좀 더 탐색 (구분선이나 소제목이 나올 때까지)
+            if not titles and not tags:
                 continue
             meta_end = i
             break
