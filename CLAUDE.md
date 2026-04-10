@@ -61,7 +61,7 @@ skill-builder/
 
 ## blog-post-generator 파이프라인
 
-Streamlit UI(`app/main.py`)가 7단계 파이프라인을 순차 실행합니다. 각 스크립트는 독립 실행도 가능.
+Streamlit UI(`app/main.py`)가 6단계 파이프라인을 순차 실행합니다. 각 스크립트는 독립 실행도 가능.
 
 SEO 콘텐츠 파이프라인이 먼저 완결된 후 브랜드 이미지를 생성하여, 브랜드 이미지 실패 시에도 SEO 콘텐츠가 온전하게 보존됩니다.
 
@@ -71,23 +71,21 @@ Step 1: fetch_competitors.py → competitor-pages.json
         analyze_competitors.py → competitor-analysis.json + analysis-summary.md
            ↓
 Step 2: generate_seo_content.py (Claude CLI) → seo-content.md (텍스트만)
-           └→ 내부 검증(skip_images) → C/D등급이면 자동 수정 1회
+           └→ 내부 검증(skip_images) → B등급 미만이면 자동 수정 최대 2회
            ↓
-Step 3: validate_seo.py (skip_images) → SEO 검증 (이미지 삽입 전)
-           ↓
-Step 4: insert_image_markers.py (Claude CLI) → seo-content.md에 이미지 마커 삽입
+Step 3: insert_image_markers.py (Claude CLI) → seo-content.md에 이미지 마커 삽입
            ↓
         build_prompts.py → prompts.json (no-text 규칙만 추가)
            ↓
         generate_images.py (Gemini API) → SEO 이미지
            ↓
-Step 5: validate_seo.py → seo-validation.json (이미지 포함 최종 검증)
+Step 4: validate_seo.py → seo-validation.json (이미지 포함 최종 검증)
            ↓
-Step 6: generate_brand_html.py (Claude CLI, 2-phase) → HTML 섹션들
+Step 5: generate_brand_html.py (Claude CLI, 2-phase) → HTML 섹션들
            ↓
         render_chrome.py (Selenium) → PNG 변환
            ↓
-Step 7: compose_final.py → 최종 HTML (브랜드 이미지 + SEO 원고 + Disclaimer 병합)
+Step 6: compose_final.py → 최종 HTML (브랜드 이미지 + SEO 원고 + Disclaimer 병합)
 ```
 
 ### 출력 구조

@@ -534,7 +534,7 @@ else:
 
         try:
             # ── Step 1: 크롤링 + 분석 ──
-            progress.progress(5, text="Step 1/7 — 상위글 수집 중...")
+            progress.progress(5, text="Step 1/6 — 상위글 수집 중...")
             log.info(f"'{keyword}' 상위 {blog_count}개 블로그 크롤링 중...")
             analysis_dir.mkdir(parents=True, exist_ok=True)
             result = run_script("fetch_competitors.py", [
@@ -548,7 +548,7 @@ else:
                 error_occurred = True
 
             if not error_occurred and competitor_pages.exists():
-                progress.progress(10, text="Step 1/7 — 패턴 분석 중...")
+                progress.progress(10, text="Step 1/6 — 패턴 분석 중...")
                 result = run_script("analyze_competitors.py", [
                     "--input", str(competitor_pages),
                     "--keyword", keyword,
@@ -560,7 +560,7 @@ else:
 
             # ── Step 2: SEO 원고 작성 (내부 검증+자동수정 포함) ──
             if not error_occurred and analysis_json.exists():
-                progress.progress(18, text="Step 2/7 — AI 원고 작성 중...")
+                progress.progress(18, text="Step 2/6 — AI 원고 작성 중...")
                 log.info("Claude가 SEO 원고를 작성 중...")
                 content_dir.mkdir(parents=True, exist_ok=True)
                 result = run_script("generate_seo_content.py", [
@@ -573,22 +573,10 @@ else:
                     st.code(result.stderr[-500:] if result.stderr else result.stdout[-500:] if result.stdout else "Unknown error")
                     error_occurred = True
 
-            # ── Step 3: SEO 검증 (이미지 삽입 전 — skip_images) ──
+            # ── Step 3: SEO 이미지 (마커 삽입 + 프롬프트 + Gemini) ──
             if not error_occurred and seo_content_path.exists():
-                progress.progress(28, text="Step 3/7 — SEO 검증 중...")
-                v_args = [
-                    "--content", str(seo_content_path),
-                    "--keyword", keyword,
-                    "--skip-images",
-                ]
-                if analysis_json.exists():
-                    v_args += ["--analysis", str(analysis_json)]
-                run_script("validate_seo.py", v_args)
-
-            # ── Step 4: SEO 이미지 (마커 삽입 + 프롬프트 + Gemini) ──
-            if not error_occurred and seo_content_path.exists():
-                # 4-1: 원고 기반 이미지 마커 삽입
-                progress.progress(35, text="Step 4/7 — AI 이미지 배치 중...")
+                # 3-1: 원고 기반 이미지 마커 삽입
+                progress.progress(28, text="Step 3/6 — AI 이미지 배치 중...")
                 log.info("Claude가 원고에 맞는 이미지를 배치 중...")
                 img_marker_args = [
                     "--seo-content", str(seo_content_path),
@@ -600,25 +588,25 @@ else:
                 if result.returncode != 0:
                     st.warning("이미지 마커 삽입 실패. 이미지 없이 진행합니다.")
                 else:
-                    # 4-2: 프롬프트 생성
-                    progress.progress(45, text="Step 4/7 — 이미지 프롬프트 생성 중...")
+                    # 3-2: 프롬프트 생성
+                    progress.progress(38, text="Step 3/6 — 이미지 프롬프트 생성 중...")
                     images_dir.mkdir(parents=True, exist_ok=True)
                     result = run_script("build_prompts.py", [
                         "--seo-content", str(seo_content_path),
                         "--output-dir", str(images_dir),
                     ])
                     if result.returncode == 0 and prompts_json.exists():
-                        # 4-3: Gemini 이미지 생성
-                        progress.progress(50, text="Step 4/7 — Gemini 이미지 생성 중...")
+                        # 3-3: Gemini 이미지 생성
+                        progress.progress(45, text="Step 3/6 — Gemini 이미지 생성 중...")
                         log.info("Gemini SEO 이미지 생성 중... (1장당 약 10초)")
                         run_script("generate_images.py", [
                             "--prompts-file", str(prompts_json),
                             "--output-dir", str(images_dir),
                         ])
 
-            # ── Step 5: SEO 최종 검증 (이미지 포함) ──
+            # ── Step 4: SEO 최종 검증 (이미지 포함) ──
             if not error_occurred and seo_content_path.exists():
-                progress.progress(62, text="Step 5/7 — SEO 최종 검증 중...")
+                progress.progress(55, text="Step 4/6 — SEO 최종 검증 중...")
                 v_args = ["--content", str(seo_content_path), "--keyword", keyword]
                 if analysis_json.exists():
                     v_args += ["--analysis", str(analysis_json)]
@@ -627,7 +615,7 @@ else:
                 if validation_json_path.exists():
                     st.session_state.validation_result = json.loads(validation_json_path.read_text(encoding="utf-8"))
 
-            # ── Step 5-1: SEO 단독 HTML 생성 ──
+            # ── Step 4-1: SEO 단독 HTML 생성 ──
             if not error_occurred and seo_content_path.exists():
                 seo_html_args = [
                     "--seo-content", str(seo_content_path),
@@ -659,9 +647,9 @@ else:
                     seo_html_args += ["--seo-images-dir", str(images_dir)]
                 run_script("compose_final.py", seo_html_args)
 
-            # ── Step 6: 브랜드 섹션 이미지 (HTML + PNG) ──
+            # ── Step 5: 브랜드 섹션 이미지 (HTML + PNG) ──
             if not error_occurred:
-                progress.progress(68, text="Step 6/7 — 브랜드 섹션 이미지 생성 중...")
+                progress.progress(68, text="Step 5/6 — 브랜드 섹션 이미지 생성 중...")
                 log.info("Claude가 브랜드 섹션 HTML을 생성 중... (약 5~10분)")
                 branded_html_dir = out_dir / "branded" / "html"
                 branded_html_dir.mkdir(parents=True, exist_ok=True)
@@ -696,7 +684,7 @@ else:
 
                 # HTML이 1개라도 있으면 PNG 렌더링 시도
                 if has_brand_htmls:
-                    progress.progress(88, text="Step 6/7 — PNG 렌더링 중...")
+                    progress.progress(88, text="Step 5/6 — PNG 렌더링 중...")
                     log.info("HTML → PNG 변환 중...")
                     branded_dir.mkdir(parents=True, exist_ok=True)
                     result = run_script("render_chrome.py", [
@@ -707,9 +695,9 @@ else:
                 elif result.returncode != 0:
                     st.info("SEO 원고만으로 진행합니다.")
 
-            # ── Step 7: 최종 HTML 조합 ──
+            # ── Step 6: 최종 HTML 조합 ──
             if not error_occurred and seo_content_path.exists():
-                progress.progress(94, text="Step 7/7 — 최종 HTML 조합 중...")
+                progress.progress(94, text="Step 6/6 — 최종 HTML 조합 중...")
                 final_dir.mkdir(parents=True, exist_ok=True)
                 c_args = [
                     "--seo-content", str(seo_content_path),
